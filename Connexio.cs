@@ -33,7 +33,7 @@ namespace LibreriaDeLibrosSL
                 }
             }
             //Port=3307;
-            string conexion = "Server=localhost;Database=libreria;User ID=root;Password=123;Pooling=false;Port=3307";
+            string conexion = "Server=localhost;Database=libreria;User ID=root;Password=123456;Pooling=false;";
             conn = new MySqlConnection(conexion);
             conn.Open();
             return conn;

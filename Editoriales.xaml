@@ -15,10 +15,10 @@
         <ListView Margin="10,80,10,10" x:Name="lveditoriales">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" Width="20" DisplayMemberBinding="{Binding ID}" />
-                    <GridViewColumn Header="CIF" Width="45" DisplayMemberBinding="{Binding CIF}" />
+                    <GridViewColumn Header="ID" Width="20" DisplayMemberBinding="{Binding id}" />
+                    <GridViewColumn Header="CIF" Width="65" DisplayMemberBinding="{Binding cif}" />
                     <GridViewColumn Header="Nombre" Width="150" DisplayMemberBinding="{Binding nombre}" />
-                    <GridViewColumn Header="Telefono" Width="60" DisplayMemberBinding="{Binding telefono}" />
+                    <GridViewColumn Header="Telefono" Width="80" DisplayMemberBinding="{Binding telefono}" />
                     <GridViewColumn Header="Direccion" Width="150" DisplayMemberBinding="{Binding direccion}" />
                     <GridViewColumn Header="Email" Width="150" DisplayMemberBinding="{Binding email}" />
                 </GridView>
