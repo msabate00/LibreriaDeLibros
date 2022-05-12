@@ -10,32 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace LibreriaDeLibrosSL
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Lógica de interacción para Agregar_empleat.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Agregar_empleat : Window
     {
-        public MainWindow()
+        public Agregar_empleat()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Editoriales window = new Editoriales();
-            window.Show();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Empleados window = new Empleados();
-            window.Show();
-
         }
     }
 }
