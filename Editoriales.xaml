@@ -1,0 +1,30 @@
+﻿<Window x:Class="LibreriaDeLibrosSL.Editoriales"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibreriaDeLibrosSL"
+        mc:Ignorable="d"
+        Title="Editoriales" Height="352" Width="603">
+    <Grid>
+        <Label Content="Editoriales" HorizontalAlignment="Left" Margin="14,14,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Button Content="Insertar" Margin="413,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" Click="onInsertar"/>
+        <Button Content="Modificar" Margin="467,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54"/>
+        <Button Content="Eliminar" Margin="531,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46"/>
+
+        <ListView Margin="10,80,10,10" x:Name="lveditoriales">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="20" DisplayMemberBinding="{Binding ID}" />
+                    <GridViewColumn Header="CIF" Width="45" DisplayMemberBinding="{Binding CIF}" />
+                    <GridViewColumn Header="Nombre" Width="150" DisplayMemberBinding="{Binding nombre}" />
+                    <GridViewColumn Header="Telefono" Width="60" DisplayMemberBinding="{Binding telefono}" />
+                    <GridViewColumn Header="Direccion" Width="150" DisplayMemberBinding="{Binding direccion}" />
+                    <GridViewColumn Header="Email" Width="150" DisplayMemberBinding="{Binding email}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+    </Grid>
+</Window>
