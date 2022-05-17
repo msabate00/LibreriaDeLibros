@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 namespace LibreriaDeLibrosSL
 {
     /// <summary>
-    /// Lógica de interacción para Factura.xaml
+    /// Lógica de interacción para LiniaFactura.xaml
     /// </summary>
-    public partial class Facturas : Window
+    public partial class LiniaFactura : Window
     {
         Connexio connexio = new Connexio();
-        List<Factura> lista_facturas = new List<Factura>();
-        public Facturas()
+        List<LinFacturas> lista_LinFacturas = new List<LinFacturas>();
+        public LiniaFactura()
         {
             InitializeComponent();
             cargar();
@@ -39,14 +39,14 @@ namespace LibreriaDeLibrosSL
             string query = "select* from facturas;";
             MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            lista_facturas = new List<Factura>();
+            lista_LinFacturas = new List<LinFacturas>();
             while (rdr.Read())
             {
-                Factura prov = new Factura(rdr.GetInt32(0), rdr.GetInt32(1), rdr.GetInt32(2), rdr.GetDateTime(3), rdr.GetFloat(4));
-                lista_facturas.Add(prov);
+                LinFacturas prov = new LinFacturas(rdr.GetInt32(0), rdr.GetInt32(1), rdr.GetInt32(2), rdr.GetFloat(3));
+                lista_LinFacturas.Add(prov);
             }
             rdr.Close();
-            lvfacturas.ItemsSource = lista_facturas;
+            lvLiniaFacturas.ItemsSource = lista_LinFacturas;
         }
     }
 }
