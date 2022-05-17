@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibreriaDeLibrosSL"
         mc:Ignorable="d"
-        Title="LiniaFactura" Height="450" Width="800">
+        Title="LiniaFactura" Height="352" Width="603">
     <Grid>
         <Label Content="Linias Factura" HorizontalAlignment="Left" Margin="14,14,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Button Content="Insertar" Margin="413,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" Click="onInsertar"/>
@@ -15,10 +15,10 @@
         <ListView Margin="10,80,10,10" x:Name="lvLiniaFacturas">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id_Factura" Width="190" DisplayMemberBinding="{Binding id_Factura}" />
-                    <GridViewColumn Header="Id_Cliente" Width="190" DisplayMemberBinding="{Binding id_Libro}" />
-                    <GridViewColumn Header="Cantidad" Width="195" DisplayMemberBinding="{Binding cantidad}" />
-                    <GridViewColumn Header="Preco por unidad" Width="200" DisplayMemberBinding="{Binding precioUnidad}" />
+                    <GridViewColumn Header="Id_Factura" Width="120" DisplayMemberBinding="{Binding id_Factura}" />
+                    <GridViewColumn Header="Id_Cliente" Width="120" DisplayMemberBinding="{Binding id_Libro}" />
+                    <GridViewColumn Header="Cantidad" Width="160" DisplayMemberBinding="{Binding cantidad}" />
+                    <GridViewColumn Header="Preco por unidad" Width="190" DisplayMemberBinding="{Binding precioUnidad}" />
                 </GridView>
             </ListView.View>
         </ListView>
