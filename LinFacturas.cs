@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LibreriaDeLibrosSL
+{
+    internal class LinFacturas
+    {
+        public LinFacturas(int id_Factura, int id_Libro, int cantidad, float precioUnidad)
+        {
+            this.id_Factura = id_Factura;
+            this.id_Libro = id_Libro;
+            this.cantidad = cantidad;
+            this.precioUnidad = precioUnidad;
+        }
+
+        public int id_Factura { set; get; }
+        public int id_Libro { set; get; }
+        public int cantidad { set; get; }
+        public float precioUnidad { set; get; }
+
+    }
+}
