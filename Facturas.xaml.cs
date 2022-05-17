@@ -49,9 +49,5 @@ namespace LibreriaDeLibrosSL
             lvfacturas.ItemsSource = lista_facturas;
         }
 
-        private void onInsertar(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
