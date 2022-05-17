@@ -17,7 +17,6 @@ namespace LibreriaDeLibrosSL
 
         private MySqlConnection conn = null;
 
-
         private MySqlConnection connecta()
         {
             if (conn != null)
@@ -33,7 +32,7 @@ namespace LibreriaDeLibrosSL
                 }
             }
             //Port=3307;
-            string conexion = "Server=localhost;Database=libreria;User ID=root;Password=123;Pooling=false;Port=3307";
+            string conexion = "Server=localhost;Database=libreria;User ID=hibernate;Password=123456;Pooling=false;Port=3307";
             conn = new MySqlConnection(conexion);
             conn.Open();
             return conn;
