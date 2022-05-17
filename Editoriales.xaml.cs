@@ -37,13 +37,22 @@ namespace LibreriaDeLibrosSL
 
         public void cargar()
         {
-            string query = "select* from editoriales;";
+            string query = "select * from editoriales;";
             MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             lista_editoriales = new List<Editorial>();
             while (rdr.Read())
             {
-               Editorial prov = new Editorial(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetString(3), rdr.GetString(4), rdr.GetString(5));
+               Editorial prov = new Editorial(
+                   rdr.GetInt32(0),
+                   rdr.GetString(1),
+                   rdr.GetString(2),
+                   rdr.GetString(3), 
+                   rdr.GetString(4),
+                   rdr.GetInt32(5),
+                   rdr.GetInt32(6),
+                   rdr.GetInt32(7),
+                   rdr.GetString(8));
                 lista_editoriales.Add(prov);
             }
             rdr.Close();

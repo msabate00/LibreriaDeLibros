@@ -23,5 +23,10 @@ namespace LibreriaDeLibrosSL
         {
             InitializeComponent();
         }
+
+        private void onInsertar(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

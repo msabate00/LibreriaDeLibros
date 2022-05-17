@@ -20,6 +20,9 @@
                     <GridViewColumn Header="Nombre" Width="150" DisplayMemberBinding="{Binding nombre}" />
                     <GridViewColumn Header="Telefono" Width="80" DisplayMemberBinding="{Binding telefono}" />
                     <GridViewColumn Header="Direccion" Width="150" DisplayMemberBinding="{Binding direccion}" />
+                    <GridViewColumn Header="codi_postal" Width="150" DisplayMemberBinding="{Binding codi_postal}" />
+                    <GridViewColumn Header="codi_provincia" Width="150" DisplayMemberBinding="{Binding codi_provincia}" />
+                    <GridViewColumn Header="codi_municipi" Width="150" DisplayMemberBinding="{Binding codi_municipi}" />
                     <GridViewColumn Header="Email" Width="150" DisplayMemberBinding="{Binding email}" />
                 </GridView>
             </ListView.View>
