@@ -1,0 +1,29 @@
+﻿<Window x:Class="LibreriaDeLibrosSL.Facturas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibreriaDeLibrosSL"
+        mc:Ignorable="d"
+         Title="Facturas" Height="352" Width="603">
+    <Grid>
+        <Label Content="Facturas" HorizontalAlignment="Left" Margin="14,14,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Button Content="Insertar" Margin="413,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" Click="onInsertar"/>
+        <Button Content="Modificar" Margin="467,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54"/>
+        <Button Content="Eliminar" Margin="531,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46"/>
+
+        <ListView Margin="10,80,10,10" x:Name="lvfacturas">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="20" DisplayMemberBinding="{Binding id}" />
+                    <GridViewColumn Header="Id_Cliente" Width="65" DisplayMemberBinding="{Binding cliente}" />
+                    <GridViewColumn Header="Id_Empleado" Width="150" DisplayMemberBinding="{Binding empleado}" />
+                    <GridViewColumn Header="Fecha Factura" Width="182" DisplayMemberBinding="{Binding fecha}" />
+                    <GridViewColumn Header="Preu Final" Width="160" DisplayMemberBinding="{Binding preciofinal}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+    </Grid>
+</Window>
