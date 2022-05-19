@@ -3,13 +3,14 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using MySql.Data.MySqlClient;
 using System;
+using System.Windows.Controls;
 
 namespace LibreriaDeLibrosSL
 {
     /// <summary>
     /// Interaction logic for Libros.xaml
     /// </summary>
-    public partial class Libros : Window
+    public partial class Libros : Page
     {
         public ObservableCollection<Libro> LibrosList { get; } = new();
         public ObservableCollection<Editorial> EditorialList { get; } = new();
@@ -82,9 +83,21 @@ namespace LibreriaDeLibrosSL
 
         private void RadioButtonsUpdated()
         {
+            ComboBoxLibros.SelectedItem = null;
+            TextBoxISBN.Text = "";
+            TextBoxTitle.Text = "";
+            TextBoxAuthor.Text = "";
+            DatePickerPublDate.Text = "";
+            TextBoxGenre.Text = "";
+            TextBoxPrice.Text = "";
+            TextBoxStock.Text = "";
+            TextBoxLang.Text = "";
+            ComboBoxEditorial.SelectedItem = null;
+
             Apply.IsEnabled = true;
             Load.IsEnabled = true;
             Save.IsEnabled = true;
+
             if (IsInsert.IsChecked != null && (bool) IsInsert.IsChecked)
             {
                 ComboBoxLibros.IsEnabled = false;
@@ -156,26 +169,90 @@ namespace LibreriaDeLibrosSL
         {
             if (IsInsert.IsChecked != null && (bool)IsInsert.IsChecked)
             {
-                int id = 0;
+                try
+                {
+                    int id = 0;
+                    foreach (Libro libro in LibrosList)
+                    {
+                        id = libro.ID > id ? libro.ID : id;
+                    }
+                    foreach (Libro libro in LibrosListOriginal)
+                    {
+                        id = libro.ID > id ? libro.ID : id;
+                    }
+                    id++;
 
-                string isbn = TextBoxISBN.Text;
-                string titulo = TextBoxTitle.Text;
-                string autor = TextBoxAuthor.Text;
-                DateTime fecha_publicacion = (DateTime) DatePickerPublDate.SelectedDate;
-                string genero = TextBoxGenre.Text;
-                double precio = Double.Parse(TextBoxPrice.Text);
-                int stock = Int32.Parse(TextBoxStock.Text);
-                string idioma = TextBoxLang.Text;
-                Editorial ed = (Editorial) ComboBoxEditorial.SelectedItem;
+                    string isbn = TextBoxISBN.Text;
+                    string titulo = TextBoxTitle.Text;
+                    string autor = TextBoxAuthor.Text;
+                    string genero = TextBoxGenre.Text;
+                    string idioma = TextBoxLang.Text;
 
-                LibrosList.Add(new Libro(id, isbn, titulo, autor, fecha_publicacion, genero, precio, stock, idioma, ed));
+                    DateTime fecha_publicacion = DateTime.MinValue;
+                    double precio = 0.0;
+                    int stock = 0;
+                    Editorial ed = new Editorial(0, "", "", "", "", 0, 0, 0, "");
+                    try
+                    {
+                        fecha_publicacion = (DateTime)DatePickerPublDate.SelectedDate;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("La fecha no tiene un formato válido.");
+                    }
+                    try
+                    {
+                        precio = Double.Parse(TextBoxPrice.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("El precio debe ser un número con decimales.");
+                    }
+                    try
+                    {
+                        stock = Int32.Parse(TextBoxStock.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("El stock debe ser un número entero.");
+                    }
+                    try
+                    {
+                        ed = (Editorial)ComboBoxEditorial.SelectedItem;
+                        if (ed == null)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Debe seleccionarse una editorial.");
+                    }
+
+                    LibrosList.Add(new Libro(id, isbn, titulo, autor, fecha_publicacion, genero, precio, stock, idioma, ed));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error al insertar");
+                }
             }
             else if (IsDelete.IsChecked != null && (bool)IsDelete.IsChecked)
             {
-                if (ComboBoxLibros.SelectedItem != null)
+                if (ComboBoxLibros.SelectedItem == null)
                 {
-                    LibrosList.Remove((Libro) ComboBoxLibros.SelectedItem);
+                    MessageBox.Show("No se ha seleccionado ningún registro", "Error al eliminar");
                 }
+                else {
+                    try
+                    {
+                        LibrosList.Remove((Libro)ComboBoxLibros.SelectedItem);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error al eliminar");
+                    }
+                }
+
             }
         }
 
