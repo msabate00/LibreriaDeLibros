@@ -44,7 +44,7 @@ public partial class Empleados : Window
     }
     public void cargar()
     {
-        string query = "select* from empleado;";
+        string query = "select * from empleados;";
         MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
         MySqlDataReader rdr = cmd.ExecuteReader();
         lista_empleados = new List<Empleado>();
