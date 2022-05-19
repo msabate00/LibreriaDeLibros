@@ -60,17 +60,20 @@ namespace LibreriaDeLibrosSL
         {
             EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.insertar);
             window.ShowDialog();
+            cargar();
         }
         private void onModificar(object sender, RoutedEventArgs e)
         {
             EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.modificar);
             window.ShowDialog();
+            cargar();
         }
 
         private void onEliminar(object sender, RoutedEventArgs e)
         {
             EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.eliminar);
             window.ShowDialog();
+            cargar();
         }
     }
 }

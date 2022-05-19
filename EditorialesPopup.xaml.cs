@@ -62,32 +62,46 @@ namespace LibreriaDeLibrosSL
             connexio.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void onAceptar(object sender, RoutedEventArgs e)
         {
             Connexio connexio = new Connexio();
-            switch (_forma) {
-                case forma.insertar:
-                    //INSERT INTO editoriales (cif, nombre, telefono, direccion, codi_postal, codi_provincia , codi_municipi, email) 
-                    //VALUES('U23747413', 'Áglaya', '968320680', 'C/ Real, 16 - Bajo', 30201, 44, 244127, 'info@editorialaglaya.com');
-                    //'U23747413', 'Áglaya', '968320680', 'C/ Real, 16 - Bajo', 30201, 44, 244127, 'info@editorialaglaya.com'
-                    string query = "INSERT INTO editoriales (cif, nombre, telefono, direccion, codi_postal, codi_provincia , codi_municipi, email) " +
-                        "VALUES('"+tb_editorial_popup_cif.Text+ "','" + tb_editorial_popup_nombre.Text + "'" +
-                        "'" + tb_editorial_popup_telefono.Text + "''" + tb_editorial_popup_direccion.Text + "'" +
-                        "'" + tb_editorial_popup_cp.Text + "''" + tb_editorial_popup_cif.Text + "'" +
-                        "'" + tb_editorial_popup_cif.Text + "''" + tb_editorial_popup_cif.Text + "')";
-                    MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
-                    cmd.ExecuteNonQuery();
-                    this.Close();
+            try
+            {
+
+                switch (_forma)
+                {
+                    case forma.insertar:
+                        //INSERT INTO editoriales (cif, nombre, telefono, direccion, codi_postal, codi_provincia , codi_municipi, email) 
+                        //VALUES('U23747413', 'Áglaya', '968320680', 'C/ Real, 16 - Bajo', 30201, 44, 244127, 'info@editorialaglaya.com');
+                        //'U23747413', 'Áglaya', '968320680', 'C/ Real, 16 - Bajo', 30201, 44, 244127, 'info@editorialaglaya.com'
+                        string query = "INSERT INTO editoriales (cif, nombre, telefono, direccion, codi_postal, codi_provincia , codi_municipi, email) " +
+                            "VALUES('" + tb_editorial_popup_cif.Text + "','" + tb_editorial_popup_nombre.Text + "'," +
+                            "'" + tb_editorial_popup_telefono.Text + "','" + tb_editorial_popup_direccion.Text + "'," +
+                            "" + tb_editorial_popup_cp.Text + "," +
+                            (cb_editorial_popup_provincia.SelectedItem as Provincia).ID + "," +
+                            "" + (cb_editorial_popup_municipio.SelectedItem as Municipio).ID + ",'" + tb_editorial_popup_email.Text + "')";
+                        MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
+                        cmd.ExecuteNonQuery();
+                        
 
 
-                    break;
-                case forma.modificar:
-                    break;
-                case forma.eliminar:
-                    break;
-                    
+
+                        break;
+                    case forma.modificar:
+                        break;
+                    case forma.eliminar:
+                        break;
+
+                }
+
             }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+            
+            
             connexio.Close();
+            this.Close();
         }
 
         private void onSelectProvincia(object sender, SelectionChangedEventArgs e)
