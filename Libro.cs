@@ -9,6 +9,7 @@ namespace LibreriaDeLibrosSL
     public class Libro
     {
         public int ID { get; set; }
+        public Editorial FKEditorial { get; set; }
         public String ISBN { get; set; }
         public String Titulo { get; set; }
         public String Autor { get; set; }
@@ -17,7 +18,6 @@ namespace LibreriaDeLibrosSL
         public double Precio { get; set; }
         public int Stock { get; set; }
         public String Idioma { get; set; }
-        public Editorial FKEditorial { get; set; }
 
         public Libro(int ID, String ISBN, String Titulo, String Autor, DateTime Fecha, String Genero, double Precio, int Stock, String Idioma, Editorial FKEditorial)
         {
