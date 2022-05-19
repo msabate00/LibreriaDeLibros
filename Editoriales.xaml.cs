@@ -29,11 +29,6 @@ namespace LibreriaDeLibrosSL
             cargar();
         }
 
-        private void onInsertar(object sender, RoutedEventArgs e)
-        {
-            EditorialesPopup window = new EditorialesPopup();
-            window.ShowDialog();
-        }
 
         public void cargar()
         {
@@ -59,5 +54,23 @@ namespace LibreriaDeLibrosSL
             lveditoriales.ItemsSource = lista_editoriales;
         }
 
+
+
+        private void onInsertar(object sender, RoutedEventArgs e)
+        {
+            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.insertar);
+            window.ShowDialog();
+        }
+        private void onModificar(object sender, RoutedEventArgs e)
+        {
+            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.modificar);
+            window.ShowDialog();
+        }
+
+        private void onEliminar(object sender, RoutedEventArgs e)
+        {
+            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.eliminar);
+            window.ShowDialog();
+        }
     }
 }

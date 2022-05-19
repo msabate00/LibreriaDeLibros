@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibreriaDeLibrosSL"
         mc:Ignorable="d"
-        Title="Editoriales" Height="352" Width="603">
+        Title="Editoriales" Height="352" Width="603"  Background="LightGray">
     <Grid>
         <Label Content="Editoriales" HorizontalAlignment="Left" Margin="14,14,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Button Content="Insertar" Margin="413,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" Click="onInsertar"/>
-        <Button Content="Modificar" Margin="467,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54"/>
-        <Button Content="Eliminar" Margin="531,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46"/>
+        <Button Content="Modificar" Margin="467,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Click="onModificar"/>
+        <Button Content="Eliminar" Margin="531,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" Click="onEliminar"/>
 
         <ListView Margin="10,80,10,10" x:Name="lveditoriales">
             <ListView.View>
