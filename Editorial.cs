@@ -33,5 +33,10 @@ namespace LibreriaDeLibrosSL
             this.email = email;
         }
 
+        public override string ToString()
+        {
+            return "[" + this.id.ToString() + "] " + this.nombre;
+        }
+
     }
 }
