@@ -37,5 +37,10 @@ namespace LibreriaDeLibrosSL
             window.Show();
 
         }
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Libros window = new Libros();
+            window.Show();
+        }
     }
 }

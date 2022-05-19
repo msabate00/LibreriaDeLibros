@@ -5,32 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibreriaDeLibrosSL"
         mc:Ignorable="d"
-        Title="Libros" Height="378" Width="282">
+        Title="Libros" Height="416" Width="997">
     <Grid>
-        <RadioButton Content="Modificar" GroupName="action" HorizontalAlignment="Left" Margin="190,10,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="Eliminar" GroupName="action" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="Insertar" GroupName="action" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="136,30,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="ID" HorizontalAlignment="Left" Margin="109,28,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="136,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="136,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="136,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="ISBN" HorizontalAlignment="Left" Margin="95,53,0,0" VerticalAlignment="Top"/>
-        <Label Content="Título" HorizontalAlignment="Left" Margin="90,76,0,0" VerticalAlignment="Top"/>
-        <Label Content="Autor" HorizontalAlignment="Left" Margin="91,99,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="136,126,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Fecha de publicación" HorizontalAlignment="Left" Margin="9,125,0,0" VerticalAlignment="Top"/>
-        <Label Content="Género" HorizontalAlignment="Left" Margin="81,151,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="136,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text=""/>
-        <Label Content="Precio" HorizontalAlignment="Left" Margin="87,178,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="136,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text=""/>
-        <Label Content="Stock" HorizontalAlignment="Left" Margin="92,201,0,0" VerticalAlignment="Top"/>
-        <Label Content="Idioma" HorizontalAlignment="Left" Margin="84,226,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="136,155,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="136,228,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="136,255,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Editorial" HorizontalAlignment="Left" Margin="76,253,0,0" VerticalAlignment="Top"/>
-        <Button Content="Enviar" HorizontalAlignment="Left" Margin="90,299,0,0" VerticalAlignment="Top" Width="95"/>
-
+        <RadioButton Name="IsInsert" Content="Insertar" GroupName="librosAction" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="IsInsert_Checked"/>
+        <RadioButton Name="IsDelete" Content="Eliminar" GroupName="librosAction" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="IsDelete_Checked"/>
+        <RadioButton Name="IsUpdate" Content="Modificar" GroupName="librosAction" HorizontalAlignment="Left" Margin="190,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="IsUpdate_Checked"/>
+        <ComboBox ItemsSource="{Binding LibrosList}" Name="ComboBoxLibros" HorizontalAlignment="Left" Margin="100,30,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <TextBox Name="TextBoxISBN" HorizontalAlignment="Left" Margin="100,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <TextBox Name="TextBoxTitle" HorizontalAlignment="Left" Margin="100,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <TextBox Name="TextBoxAuthor" HorizontalAlignment="Left" Margin="100,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <DatePicker Name="DatePickerPublDate" HorizontalAlignment="Left" Margin="100,126,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <TextBox Name="TextBoxGenre" HorizontalAlignment="Left" Margin="100,155,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <TextBox Name="TextBoxPrice" HorizontalAlignment="Left" Margin="100,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Text="" IsEnabled="False"/>
+        <TextBox Name="TextBoxStock" HorizontalAlignment="Left" Margin="100,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Text="" IsEnabled="False"/>
+        <TextBox Name="TextBoxLang" HorizontalAlignment="Left" Margin="100,224,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <ComboBox ItemsSource="{Binding EditorialList}" Name="ComboBoxEditorial" HorizontalAlignment="Left" Margin="100,247,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <Button Name="Apply" Content="Aplicar" HorizontalAlignment="Left" Margin="100,280,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False" Click="Commit_Click"/>
+        <Button x:Name="Save" Content="Enviar a BDD" HorizontalAlignment="Left" Margin="100,330,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False" Click="Save_Click"/>
+        <Button x:Name="Load" Content="Cargar BDD" HorizontalAlignment="Left" Margin="100,305,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False" Click="Load_Click"/>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="71,28,0,0" VerticalAlignment="Top"/>
+        <Label Content="ISBN" HorizontalAlignment="Left" Margin="57,53,0,0" VerticalAlignment="Top"/>
+        <Label Content="Título" HorizontalAlignment="Left" Margin="52,76,0,0" VerticalAlignment="Top"/>
+        <Label Content="Autor" HorizontalAlignment="Left" Margin="52,99,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha de publ." HorizontalAlignment="Left" Margin="5,125,0,0" VerticalAlignment="Top"/>
+        <Label Content="Género" HorizontalAlignment="Left" Margin="43,151,0,0" VerticalAlignment="Top"/>
+        <Label Content="Precio" HorizontalAlignment="Left" Margin="49,174,0,0" VerticalAlignment="Top"/>
+        <Label Content="Stock" HorizontalAlignment="Left" Margin="53,197,0,0" VerticalAlignment="Top"/>
+        <Label Content="Idioma" HorizontalAlignment="Left" Margin="45,220,0,0" VerticalAlignment="Top"/>
+        <Label Content="Editorial" HorizontalAlignment="Left" Margin="39,245,0,0" VerticalAlignment="Top"/>
+        <ListView ItemsSource="{Binding LibrosList}" Margin="264,10,28,31">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="70" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="ISBN" Width="70" DisplayMemberBinding="{Binding ISBN}"/>
+                    <GridViewColumn Header="Título" Width="70" DisplayMemberBinding="{Binding Titulo}"/>
+                    <GridViewColumn Header="Autor" Width="70" DisplayMemberBinding="{Binding Autor}"/>
+                    <GridViewColumn Header="Fecha de publicación" Width="70" DisplayMemberBinding="{Binding Fecha}"/>
+                    <GridViewColumn Header="Género" Width="70" DisplayMemberBinding="{Binding Genero}"/>
+                    <GridViewColumn Header="Precio" Width="70" DisplayMemberBinding="{Binding Precio}"/>
+                    <GridViewColumn Header="Stock" Width="70" DisplayMemberBinding="{Binding Stock}"/>
+                    <GridViewColumn Header="Idioma" Width="70" DisplayMemberBinding="{Binding Idioma}"/>
+                    <GridViewColumn Header="Editorial" Width="70" DisplayMemberBinding="{Binding FKEditorial}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
