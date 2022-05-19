@@ -85,7 +85,7 @@ namespace LibreriaDeLibrosSL
                     break;
                 case forma.eliminar:
                     break;
-                    s
+                    
             }
             connexio.Close();
         }
