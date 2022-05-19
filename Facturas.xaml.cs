@@ -30,8 +30,8 @@ namespace LibreriaDeLibrosSL
 
         private void onInsertar(object sender, RoutedEventArgs e)
         {
-            EditorialesPopup window = new EditorialesPopup();
-            window.ShowDialog();
+          //  EditorialesPopup window = new EditorialesPopup();
+          //  window.ShowDialog();
         }
 
         public void cargar()
