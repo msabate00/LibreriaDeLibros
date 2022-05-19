@@ -1,4 +1,4 @@
-﻿<Window x:Class="LibreriaDeLibrosSL.Editoriales"
+﻿<Page x:Class="LibreriaDeLibrosSL.Editoriales"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,7 +15,8 @@
         <ListView Margin="10,80,10,10" x:Name="lveditoriales">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" Width="20" DisplayMemberBinding="{Binding id}" />
+             
+       <GridViewColumn Header="ID" Width="20" DisplayMemberBinding="{Binding id}" />
                     <GridViewColumn Header="CIF" Width="65" DisplayMemberBinding="{Binding cif}" />
                     <GridViewColumn Header="Nombre" Width="150" DisplayMemberBinding="{Binding nombre}" />
                     <GridViewColumn Header="Telefono" Width="80" DisplayMemberBinding="{Binding telefono}" />
@@ -30,4 +31,4 @@
 
 
     </Grid>
-</Window>
+</Page>

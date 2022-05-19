@@ -7,13 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="103*"/>
-            <RowDefinition Height="331*"/>
-        </Grid.RowDefinitions>
-        <Button Content="Editoriales" HorizontalAlignment="Left" Margin="148,47,0,0" VerticalAlignment="Top" Grid.Row="1" Click="Button_Click"/>
-        <Button Content="Empleados" HorizontalAlignment="Left" Margin="264,47,0,0" VerticalAlignment="Top" Grid.Row="1" Click="Button_Click_1" />
-        <Button Content="Libros" HorizontalAlignment="Left" Margin="198,146,0,0" VerticalAlignment="Top" Grid.Row="1" Click="Button_Click_2"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*">
+                
+            </ColumnDefinition>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Content="Editoriales" HorizontalAlignment="Left" Margin="33,32,0,0" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="59"/>
+        <Button Content="Empleados" HorizontalAlignment="Left" Margin="33,88,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="20" Width="62" />
+        <Button Content="Libros" HorizontalAlignment="Left" Margin="33,129,0,0" VerticalAlignment="Top" Click="Button_Click_2" Height="20" Width="36"/>
+
+        <Frame  Grid.Column="1" x:Name="rightCol" Background="LightGray"  ></Frame>
 
     </Grid>
 </Window>

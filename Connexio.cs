@@ -9,9 +9,9 @@ namespace LibreriaDeLibrosSL
 {
     internal class Connexio
     {
-        private static String s_database = "1libreria";
-        private static String s_user = "1root";
-        private static String s_password = "1123456";
+        private static String s_database = "libreria";
+        private static String s_user = "root";
+        private static String s_password = "123456";
         public void setDatabase(String s) {
             if (s != "") {
                 s_database = s;

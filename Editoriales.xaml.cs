@@ -19,7 +19,7 @@ namespace LibreriaDeLibrosSL
     /// Lógica de interacción para Editoriales.xaml
     /// </summary>
    
-    public partial class Editoriales : Window
+    public partial class Editoriales : Page
     {
         Connexio connexio = new Connexio();
         List<Editorial> lista_editoriales = new List<Editorial>();

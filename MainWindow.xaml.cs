@@ -27,8 +27,10 @@ namespace LibreriaDeLibrosSL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Frame middleFrame = rightCol;
             Editoriales window = new Editoriales();
-            window.Show();
+            middleFrame.Source = new Uri("Editoriales.xaml", UriKind.RelativeOrAbsolute);
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
