@@ -14,11 +14,40 @@
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Content="Editoriales" HorizontalAlignment="Left" Margin="33,32,0,0" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="59"/>
-        <Button Content="Empleados" HorizontalAlignment="Left" Margin="33,88,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="20" Width="62" />
-        <Button Content="Libros" HorizontalAlignment="Left" Margin="33,129,0,0" VerticalAlignment="Top" Click="Button_Click_2" Height="20" Width="36"/>
+      
 
         <Frame  Grid.Column="1" x:Name="rightCol" Background="LightGray"  ></Frame>
+
+        <StackPanel Orientation="Vertical">
+            <Button Content="Editoriales"
+                    HorizontalAlignment="Left"
+                    Margin="33,32,0,0"
+                    VerticalAlignment="Top"
+                    Click="Button_Click"
+                    Height="20"
+                    Width="80" />
+            <Button Content="Empleados"
+                    HorizontalAlignment="Left"
+                    Margin="33,20,0,0"
+                    VerticalAlignment="Top"
+                    Click="Button_Click_1"
+                    Height="20"
+                    Width="80" />
+            <Button Content="Libros"
+                    HorizontalAlignment="Left"
+                    Margin="33,20,0,0"
+                    VerticalAlignment="Top"
+                    Click="Button_Click_2"
+                    Height="20"
+                    Width="80" />
+            <Button Content="Pedidos"
+                    HorizontalAlignment="Left"
+                    Margin="33,20,0,0"
+                    VerticalAlignment="Top"
+                    Click="onPedidosClick"
+                    Height="20"
+                    Width="80" />
+        </StackPanel>
 
     </Grid>
 </Window>
