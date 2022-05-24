@@ -254,6 +254,90 @@ namespace LibreriaDeLibrosSL
                 }
 
             }
+            else if (IsUpdate.IsChecked != null && (bool)IsUpdate.IsChecked)
+            {
+                try
+                {
+                    Libro libro = new Libro(0, "", "", "", DateTime.MinValue, "", 0, 0, "", new Editorial(0, "", "", "", "", 0, 0, 0, ""));
+                    try
+                    {
+                        libro = (Libro)ComboBoxLibros.SelectedItem;
+                        if (libro == null)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Debe seleccionarse un libro.");
+                    }
+
+                    string isbn = TextBoxISBN.Text;
+                    string titulo = TextBoxTitle.Text;
+                    string autor = TextBoxAuthor.Text;
+                    string genero = TextBoxGenre.Text;
+                    string idioma = TextBoxLang.Text;
+
+                    DateTime fecha_publicacion = DateTime.MinValue;
+                    double precio = 0.0;
+                    int stock = 0;
+                    Editorial ed = new Editorial(0, "", "", "", "", 0, 0, 0, "");
+                    try
+                    {
+                        fecha_publicacion = (DateTime)DatePickerPublDate.SelectedDate;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("La fecha no tiene un formato válido.");
+                    }
+                    try
+                    {
+                        precio = Double.Parse(TextBoxPrice.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("El precio debe ser un número con decimales.");
+                    }
+                    try
+                    {
+                        stock = Int32.Parse(TextBoxStock.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("El stock debe ser un número entero.");
+                    }
+                    try
+                    {
+                        ed = (Editorial)ComboBoxEditorial.SelectedItem;
+                        if (ed == null)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Debe seleccionarse una editorial.");
+                    }
+
+                    libro.ISBN = isbn;
+                    libro.Titulo = titulo;
+                    libro.Autor = autor;
+                    libro.Fecha = fecha_publicacion;
+                    libro.Genero = genero;
+                    libro.Precio = precio;
+                    libro.Stock = stock;
+                    libro.Idioma = idioma;
+                    libro.FKEditorial = ed;
+
+                    LibrosList.Insert(ComboBoxLibros.SelectedIndex, libro);
+                    LibrosList.RemoveAt(ComboBoxLibros.SelectedIndex);
+                    ComboBoxLibros.SelectedItem = libro;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error al actualizar");
+                }
+            }
         }
 
         private void Load_Click(object sender, RoutedEventArgs e)
@@ -263,7 +347,93 @@ namespace LibreriaDeLibrosSL
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            MySqlTransaction transaction = null;
+            try
+            {
+                transaction = Conn.BeginTransaction();
+                foreach (Libro libroOriginal in LibrosListOriginal)
+                {
+                    bool found = false;
+                    foreach (Libro libroNuevo in LibrosList)
+                    {
+                        if (libroOriginal.ID == libroNuevo.ID)
+                        {
+                            //antes existía, ahora también, lo actualizamos
+                            String query = "UPDATE libros SET "
+                                + "id = '" + libroNuevo.ID + "', "
+                                + "editorial_id = '" + libroNuevo.FKEditorial.id + "', "
+                                + "isbn = '" + libroNuevo.ISBN + "', "
+                                + "titulo = '" + libroNuevo.Titulo + "', "
+                                + "autor = '" + libroNuevo.Autor + "', "
+                                + "fecha_publicacion = '" + DateToString(libroNuevo.Fecha) + "', "
+                                + "genero = '" + libroNuevo.Genero + "', "
+                                + "precio = '" + SanitazeDouble(libroNuevo.Precio) + "', "
+                                + "stock = '" + libroNuevo.Stock + "', "
+                                + "idioma = '" + libroNuevo.Idioma + "' "
+                                + "WHERE id = '" + libroOriginal.ID + "';";
+                            MySqlCommand cmd = new MySqlCommand(query, Conn);
+                            cmd.ExecuteNonQuery();
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        //antes existía, ahora no, lo borramos
+                        String query = "DELETE FROM libros WHERE id = " + libroOriginal.ID + ";";
+                        MySqlCommand cmd = new MySqlCommand(query, Conn);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                foreach (Libro libroNuevo in LibrosList)
+                {
+                    bool found = false;
+                    foreach (Libro libroOriginal in LibrosListOriginal)
+                    {
+                        if (libroOriginal.ID == libroNuevo.ID)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        String query = "INSERT INTO libros VALUES("
+                            + "'" + libroNuevo.ID + "', "
+                            + "'" + libroNuevo.FKEditorial.id + "', "
+                            + "'" + libroNuevo.ISBN + "', "
+                            + "'" + libroNuevo.Titulo + "', "
+                            + "'" + libroNuevo.Autor + "', "
+                            + "'" + DateToString(libroNuevo.Fecha) + "', "
+                            + "'" + libroNuevo.Genero + "', "
+                            + "'" + SanitazeDouble(libroNuevo.Precio) + "', "
+                            + "'" + libroNuevo.Stock + "', "
+                            + "'" + libroNuevo.Idioma + "'"
+                            + ");";
+                        MySqlCommand cmd = new MySqlCommand(query, Conn);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                transaction.Commit();
+                LoadDB();
+            }
+            catch (Exception ex)
+            {
+                if (transaction != null)
+                {
+                    transaction.Rollback();
+                }
+                MessageBox.Show(ex.Message, "Error al guardar en BDD");
+            }
+        }
 
+        private static string SanitazeDouble(Double d)
+        {
+            return d.ToString().Replace(",", ".");
+        }
+        private static string DateToString(DateTime date)
+        {
+            return date.Year + "-" + date.Month + "-" + date.Day;
         }
     }
 }
