@@ -44,8 +44,8 @@
                     HorizontalAlignment="Left"
                     Margin="33,20,0,0"
                     VerticalAlignment="Top"
-                    Click="onPedidosClick"
                     Height="20"
+                    Click="onPedidosClick"
                     Width="80" />
         </StackPanel>
 

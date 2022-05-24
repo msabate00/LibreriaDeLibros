@@ -45,5 +45,12 @@ namespace LibreriaDeLibrosSL
             Libros window = new Libros();
             middleFrame.Source = new Uri("Libros.xaml", UriKind.RelativeOrAbsolute);
         }
+
+        private void onPedidosClick(object sender, RoutedEventArgs e)
+        {
+            Frame middleFrame = rightCol;
+            Pedidos window = new Pedidos();
+            middleFrame.Source = new Uri("Pedidos.xaml", UriKind.RelativeOrAbsolute);
+        }
     }
 }
