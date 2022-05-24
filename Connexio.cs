@@ -9,13 +9,35 @@ namespace LibreriaDeLibrosSL
 {
     internal class Connexio
     {
-
+        private static String s_database = "libreria";
+        private static String s_user = "root";
+        private static String s_password = "123456";
+        public void setDatabase(String s) {
+            if (s != "") {
+                s_database = s;
+            }
+        }
+        public void setUser(String s)
+        {
+            if (s != "")
+            {
+                s_user = s;
+            }
+        }
+        public void setPassword(String s)
+        {
+            if (s != "")
+            {
+                s_password = s;
+            }
+        }
         public MySqlConnection Conn
         {
             get { return connecta(); }
         }
 
         private MySqlConnection conn = null;
+
 
         private MySqlConnection connecta()
         {
@@ -32,9 +54,15 @@ namespace LibreriaDeLibrosSL
                 }
             }
             //Port=3307;
-            string conexion = "Server=localhost;Database=libreria;User ID=hibernate;Password=123456;Pooling=false;";
+            string conexion = "Server=localhost;Database="+ s_database  + ";User ID="+ s_user + ";Password="+ s_password + ";Pooling=false;";
             conn = new MySqlConnection(conexion);
-            conn.Open();
+            try {
+                conn.Open();
+            }
+            catch (Exception ex) {
+                return null;
+            }
+           
             return conn;
         }
 

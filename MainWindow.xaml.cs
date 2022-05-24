@@ -27,8 +27,10 @@ namespace LibreriaDeLibrosSL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Frame middleFrame = rightCol;
             Editoriales window = new Editoriales();
-            window.Show();
+            middleFrame.Source = new Uri("Editoriales.xaml", UriKind.RelativeOrAbsolute);
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -37,12 +39,11 @@ namespace LibreriaDeLibrosSL
             window.Show();
 
         }
-
-        private void Button_Clientes(object sender, RoutedEventArgs e)
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Clientes window = new Clientes();
-            window.Show();
-
+            Frame middleFrame = rightCol;
+            Libros window = new Libros();
+            middleFrame.Source = new Uri("Libros.xaml", UriKind.RelativeOrAbsolute);
         }
     }
 }

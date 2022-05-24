@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,17 +18,62 @@ namespace LibreriaDeLibrosSL
     /// <summary>
     /// Lógica de interacción para Editoriales.xaml
     /// </summary>
-    public partial class Editoriales : Window
+   
+    public partial class Editoriales : Page
     {
+        Connexio connexio = new Connexio();
+        List<Editorial> lista_editoriales = new List<Editorial>();
         public Editoriales()
         {
             InitializeComponent();
+            cargar();
         }
+
+
+        public void cargar()
+        {
+            string query = "select * from editoriales;";
+            MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            lista_editoriales = new List<Editorial>();
+            while (rdr.Read())
+            {
+               Editorial prov = new Editorial(
+                   rdr.GetInt32(0),
+                   rdr.GetString(1),
+                   rdr.GetString(2),
+                   rdr.GetString(3), 
+                   rdr.GetString(4),
+                   rdr.GetInt32(5),
+                   rdr.GetInt32(6),
+                   rdr.GetInt32(7),
+                   rdr.GetString(8));
+                lista_editoriales.Add(prov);
+            }
+            rdr.Close();
+            lveditoriales.ItemsSource = lista_editoriales;
+        }
+
+
 
         private void onInsertar(object sender, RoutedEventArgs e)
         {
-            EditorialesPopup window = new EditorialesPopup();
+            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.insertar);
             window.ShowDialog();
+            cargar();
+        }
+        private void onModificar(object sender, RoutedEventArgs e)
+        {
+            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.modificar);
+            window.ShowDialog();
+            cargar();
+        }
+
+        private void onEliminar(object sender, RoutedEventArgs e)
+        {
+            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.eliminar);
+            window.ShowDialog();
+            cargar();
         }
     }
 }

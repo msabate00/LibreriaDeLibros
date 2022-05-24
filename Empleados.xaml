@@ -23,7 +23,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="Emplados" HorizontalAlignment="Left" Margin="44,24,0,0" VerticalAlignment="Top" Height="50" Width="224" FontSize="28" FontWeight="Bold"/>
+        <Label Content="Empleados" HorizontalAlignment="Left" Margin="44,24,0,0" VerticalAlignment="Top" Height="50" Width="224" FontSize="28" FontWeight="Bold"/>
         <Button x:Name="btnAddCli" Content="Añadir Cliente" HorizontalAlignment="Left" Margin="459,38,0,0" VerticalAlignment="Top" FontSize="16" Width="232" Click="btnAddCli_Click"/>
         <Button x:Name="btnModCli" Content="Modificar Cliente" HorizontalAlignment="Left" Margin="708,38,0,0" VerticalAlignment="Top" FontSize="16" Width="210" Click="btnModCli_Click"/>
         <Button x:Name="btnDelCli" Content="Eliminar Cliente" HorizontalAlignment="Left" Margin="938,38,0,0" VerticalAlignment="Top" FontSize="16" Width="191"/>
