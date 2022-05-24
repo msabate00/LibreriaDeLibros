@@ -13,6 +13,7 @@
         </Grid.RowDefinitions>
         <Button Content="Editoriales" HorizontalAlignment="Left" Margin="148,47,0,0" VerticalAlignment="Top" Grid.Row="1" Click="Button_Click"/>
         <Button Content="Empleados" HorizontalAlignment="Left" Margin="264,47,0,0" VerticalAlignment="Top" Grid.Row="1" Click="Button_Click_1" />
+        <Button Content="Clientes" HorizontalAlignment="Center" Margin="0,47,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Clientes"/>
 
     </Grid>
 </Window>
