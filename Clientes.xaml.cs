@@ -19,7 +19,7 @@ namespace LibreriaDeLibrosSL
     /// <summary>
     /// Lógica de interacción para Clientes.xaml
     /// </summary>
-    public partial class Clientes : Window
+    public partial class Clientes : Page
     {
         Connexio connexio = new Connexio();
         List<Cliente> lista_clientes = new List<Cliente>();
@@ -48,10 +48,8 @@ namespace LibreriaDeLibrosSL
 
         private void btnAddCli_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
             AddCliente v = new AddCliente();
             v.ShowDialog();
-            Show();
             lvClientes.ItemsSource = null;
             cargarClientes();
         }
@@ -61,10 +59,8 @@ namespace LibreriaDeLibrosSL
             if(lvClientes.SelectedItem != null)
             {                
                 Cliente c = lvClientes.SelectedItem as Cliente;
-                Hide();
                 ModCliente v = new ModCliente(c);
                 v.ShowDialog();
-                Show();
                 lvClientes.ItemsSource = null;
                 cargarClientes();
             }
