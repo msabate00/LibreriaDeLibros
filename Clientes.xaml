@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LibreriaDeLibrosSL"
       mc:Ignorable="d" 
-      Title="Clientes" Height="650" Width="1149">
+      Title="Clientes" >
     <Grid Margin="0,0,10,0">
         <ScrollViewer Margin="10,92,10,10" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
             <ListView Margin="0,0,0,0" x:Name="lvClientes">

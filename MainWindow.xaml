@@ -16,7 +16,7 @@
 
       
 
-        <Frame  Grid.Column="1" x:Name="rightCol" Background="LightGray"  ></Frame>
+        <Frame  Grid.Column="1" x:Name="rightCol" Background="LightGray" Margin="0,0,0,0" Navigated="rightCol_Navigated"  ></Frame>
 
         <StackPanel Orientation="Vertical">
             <Button Content="Editoriales"

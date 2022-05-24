@@ -30,6 +30,7 @@ namespace LibreriaDeLibrosSL
             Frame middleFrame = rightCol;
             Editoriales window = new Editoriales();
             middleFrame.Source = new Uri("Editoriales.xaml", UriKind.RelativeOrAbsolute);
+            
 
         }
 
@@ -56,6 +57,11 @@ namespace LibreriaDeLibrosSL
             Frame middleFrame = rightCol;
             Clientes window = new Clientes();
             middleFrame.Source = new Uri("Clientes.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void rightCol_Navigated(object sender, NavigationEventArgs e)
+        {
+
         }
     }
 }
