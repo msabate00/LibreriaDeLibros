@@ -23,7 +23,7 @@
                     HorizontalAlignment="Left"
                     Margin="33,32,0,0"
                     VerticalAlignment="Top"
-                    Click="Button_Click"
+                    Click="onEditorialClick"
                     Height="20"
                     Width="80" />
             <Button Content="Empleados"
@@ -45,7 +45,13 @@
                     Margin="33,20,0,0"
                     VerticalAlignment="Top"
                     Height="20"
-                    Click="onPedidosClick"
+                    Width="80" />
+            <Button Content="Clientes"
+                    HorizontalAlignment="Left"
+                    Margin="33,20,0,0"
+                    VerticalAlignment="Top"
+                    Click="onClientesClick"
+                    Height="20"
                     Width="80" />
         </StackPanel>
 

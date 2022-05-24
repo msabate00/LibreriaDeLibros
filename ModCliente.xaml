@@ -1,0 +1,32 @@
+﻿<Window x:Class="LibreriaDeLibrosSL.ModCliente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibreriaDeLibrosSL"
+        mc:Ignorable="d"
+        Title="ModCliente" Height="580" Width="600">
+    <Grid>
+        <Label Content="Modificar Cliente" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="50" Width="290" FontSize="28" FontWeight="Bold"/>
+        <Label Content="NIF" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="20" Width="153"/>
+        <TextBox x:Name="nifCli" HorizontalAlignment="Left" Margin="170,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" FontSize="20"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" FontSize="20" Width="153"/>
+        <TextBox x:Name="nomCli" HorizontalAlignment="Left" Margin="170,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" FontSize="20"/>
+        <Label Content="Apellidos" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top" FontSize="20" Width="153"/>
+        <TextBox x:Name="apelCli" HorizontalAlignment="Left" Margin="170,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" FontSize="20"/>
+        <Label Content="Fecha Nacimiento" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top" FontSize="18" Width="153"/>
+        <Label Content="Telefono" HorizontalAlignment="Left" Margin="10,263,0,0" VerticalAlignment="Top" FontSize="20" Width="153"/>
+        <TextBox x:Name="tlfCli" HorizontalAlignment="Left" Margin="170,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" FontSize="20"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" FontSize="20" Width="153"/>
+        <TextBox x:Name="mailCli" HorizontalAlignment="Left" Margin="170,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" FontSize="20"/>
+        <Label Content="Dirección" HorizontalAlignment="Left" Margin="10,355,0,0" VerticalAlignment="Top" FontSize="20" Width="153"/>
+        <TextBox x:Name="dirCli" HorizontalAlignment="Left" Margin="170,359,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" FontSize="20"/>
+        <DatePicker x:Name="fechaNCli" HorizontalAlignment="Left" Margin="170,218,0,0" VerticalAlignment="Top" FontSize="20" Width="403"/>
+        <Label Content="Provincia" HorizontalAlignment="Left" Margin="10,401,0,0" VerticalAlignment="Top" FontSize="20" Width="153"/>
+        <Label Content="Población" HorizontalAlignment="Left" Margin="10,448,0,0" VerticalAlignment="Top" FontSize="20" Width="153"/>
+        <ComboBox x:Name="provCli" HorizontalAlignment="Left" Margin="170,403,0,0" VerticalAlignment="Top" Width="403" FontSize="20" SelectionChanged="provChange"/>
+        <ComboBox x:Name="pobCli" HorizontalAlignment="Left" Margin="168,451,0,0" VerticalAlignment="Top" Width="405" FontSize="20" IsEnabled="False"/>
+        <Button x:Name="btnAdd" Click="btnModCli_Click" Content="Modificar" HorizontalAlignment="Left" Margin="453,506,0,0" VerticalAlignment="Top" FontSize="20" Width="120"/>
+        <Label x:Name="idCli" Content="" HorizontalAlignment="Left" Margin="22,512,0,0" VerticalAlignment="Top" Width="141" Visibility="Hidden"/>
+    </Grid>
+</Window>

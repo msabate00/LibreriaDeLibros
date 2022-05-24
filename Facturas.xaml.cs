@@ -24,6 +24,9 @@ namespace LibreriaDeLibrosSL
         public ObservableCollection<Factura> FacturasList { get; } = new();
         // public ObservableCollection<Cliente> ClientesList { get; } = new();
         public ObservableCollection<Empleado> EmpleadosList { get; } = new();
+
+        private List<Factura> FacturasListOriginal = new();
+
         private MySqlConnection Conn = new Connexio().Conn;
 
         public Facturas()
@@ -124,7 +127,7 @@ namespace LibreriaDeLibrosSL
                 ComboBoxClientes.IsEnabled = false;
                 ComboBoxEmpleados.IsEnabled = false;
                 DatePickerPublDate.IsEnabled = true;
-                TextBoxPreuFinal.IsEnabled = true;
+                TextBoxPreuFinal.IsEnabled = false;
             }
             else
             {
@@ -145,8 +148,99 @@ namespace LibreriaDeLibrosSL
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-
+            MySqlTransaction transaction = null;
+            try
+            {
+                transaction = Conn.BeginTransaction();
+                foreach (Factura facturaOriginal in FacturasListOriginal)
+                {
+                    bool found = false;
+                    foreach (Factura facturaNueva in FacturasList)
+                    {
+                        if (facturaOriginal.id == facturaNueva.id)
+                        {
+                            //antes existía, ahora también, lo actualizamos
+                            String query = "UPDATE facturas SET "
+                                + "id = '" + facturaNueva.id + "', "
+                                + "cliente_id = '" + facturaNueva.cliente + "', "
+                                + "empleado_id = '" + facturaNueva.empleado + "', "
+                                + "fecha = '" + DateToString(facturaNueva.fecha) + "', "
+                                + "precio_final = '" + SanitazeFloat(facturaNueva.preciofinal) + "';";
+                            MySqlCommand cmd = new MySqlCommand(query, Conn);
+                            cmd.ExecuteNonQuery();
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        //antes existía, ahora no, lo borramos
+                        String query = "DELETE FROM facturas WHERE id = " + facturaOriginal.id + ";";
+                        MySqlCommand cmd = new MySqlCommand(query, Conn);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                foreach (Factura facturaNueva in FacturasList)
+                {
+                    bool found = false;
+                    foreach (Factura facturaOriginal in FacturasListOriginal)
+                    {
+                        if (facturaOriginal.id == facturaNueva.id)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        String query = "INSERT INTO libros VALUES("
+                            + "'" + facturaNueva.id + "', "
+                            + "'" + facturaNueva.cliente + "', "
+                            + "'" + facturaNueva.empleado + "', "
+                            + "'" + DateToString(facturaNueva.fecha) + "', "
+                            + "'" + SanitazeFloat(facturaNueva.preciofinal)
+                            + ");";
+                        MySqlCommand cmd = new MySqlCommand(query, Conn);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                transaction.Commit();
+                cargar();
+            }
+            catch (Exception ex)
+            {
+                if (transaction != null)
+                {
+                    transaction.Rollback();
+                }
+                MessageBox.Show(ex.Message, "Error al guardar en BDD");
+            }
         }
 
+        private static string SanitazeFloat(float f)
+        {
+            return f.ToString().Replace(",", ".");
+        }
+        private static string DateToString(DateTime date)
+        {
+            return date.Year + "-" + date.Month + "-" + date.Day;
+        }
+
+        private void IsInsert_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void IsDelete_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void IsUpdate_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Commit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

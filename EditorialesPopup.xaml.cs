@@ -39,9 +39,16 @@ namespace LibreriaDeLibrosSL
         }
         public EditorialesPopup(forma f, int id)
         {
+            Connexio connexio = new Connexio();
             _forma = f;
             id_tratar = id;
             InitializeComponent();
+            tb_editoriales_popup_titulo.Content = "Modificar Editorial";
+            string query = "SELECT * from editoriales WHERE id = " + id;
+            MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            connexio.Close();
+
             cargar();
         }
 
