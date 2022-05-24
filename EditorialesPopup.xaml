@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibreriaDeLibrosSL"
         mc:Ignorable="d"
-        Title="EditorialesPopup" Height="510" Width="347">
+        Title="EditorialesPopup" Height="450" Width="478">
     <Grid>
         <Label x:Name="tb_editoriales_popup_titulo" Content="Añadir Editorial" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="14,14,0,0"/>
         <Label Content="ID" HorizontalAlignment="Left" Margin="32,80,0,0" VerticalAlignment="Top"/>
@@ -14,20 +14,20 @@
         <Label Content="Teléfono" HorizontalAlignment="Left" Margin="32,170,0,0" VerticalAlignment="Top"/>
         <Label Content="Dirección" HorizontalAlignment="Left" Margin="32,200,0,0" VerticalAlignment="Top"/>
         <Label Content="Provincia" HorizontalAlignment="Left" Margin="32,260,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tb_editorial_popup_id" HorizontalAlignment="Left" Margin="124,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tb_editorial_popup_cif" HorizontalAlignment="Left" Margin="124,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tb_editorial_popup_nombre" HorizontalAlignment="Left" Margin="124,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tb_editorial_popup_telefono" HorizontalAlignment="Left" Margin="124,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tb_editorial_popup_direccion" HorizontalAlignment="Left" Margin="124,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="9,380,0,0" Height="26" VerticalAlignment="Top"/>
-        <Button Content="Aceptar" HorizontalAlignment="Left" Margin="292,380,0,0" Height="26" VerticalAlignment="Top" Click="onAceptar"/>
+        <TextBox x:Name="tb_editorial_popup_id" HorizontalAlignment="Left" Margin="124,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+        <TextBox x:Name="tb_editorial_popup_cif" HorizontalAlignment="Left" Margin="124,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+        <TextBox x:Name="tb_editorial_popup_nombre" HorizontalAlignment="Left" Margin="124,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+        <TextBox x:Name="tb_editorial_popup_telefono" HorizontalAlignment="Left" Margin="124,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+        <TextBox x:Name="tb_editorial_popup_direccion" HorizontalAlignment="Left" Margin="124,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="9,0,0,8" Height="26" VerticalAlignment="Bottom"/>
+        <Button Content="Aceptar" Margin="0,0,10,8" Click="onAceptar" HorizontalAlignment="Right" Width="45" Height="26" VerticalAlignment="Bottom"/>
         <Label Content="Municipio" HorizontalAlignment="Left" Margin="32,290,0,0" VerticalAlignment="Top"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="32,320,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tb_editorial_popup_email" HorizontalAlignment="Left" Margin="124,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox ItemsSource="{Binding ProvinciaList}" x:Name="cb_editorial_popup_provincia" HorizontalAlignment="Left" Margin="124,257,0,0" VerticalAlignment="Top" Width="156" SelectionChanged="onSelectProvincia"/>
-        <ComboBox ItemsSource="{Binding MunicipioList}" x:Name="cb_editorial_popup_municipio" HorizontalAlignment="Left" Margin="124,290,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <TextBox x:Name="tb_editorial_popup_email" HorizontalAlignment="Left" Margin="124,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+        <ComboBox ItemsSource="{Binding ProvinciaList}" x:Name="cb_editorial_popup_provincia" HorizontalAlignment="Left" Margin="124,257,0,0" VerticalAlignment="Top" Width="213" SelectionChanged="onSelectProvincia"/>
+        <ComboBox ItemsSource="{Binding MunicipioList}" x:Name="cb_editorial_popup_municipio" HorizontalAlignment="Left" Margin="124,290,0,0" VerticalAlignment="Top" Width="213" IsEnabled="False"/>
         <Label Content="Codigo Postal" HorizontalAlignment="Left" Margin="32,228,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tb_editorial_popup_cp" HorizontalAlignment="Left" Margin="124,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tb_editorial_popup_cp" HorizontalAlignment="Left" Margin="124,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
 
     </Grid>
 </Window>
