@@ -31,7 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.0.29" />
+    <Folder Include="libros\" />
+    <Folder Include="editoriales\" />
+    <Folder Include="facturas\" />
+    <Folder Include="clientes\" />
+    <Folder Include="empleados\" />
   </ItemGroup>
 
 </Project>

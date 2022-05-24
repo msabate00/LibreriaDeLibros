@@ -18,7 +18,11 @@ namespace LibreriaDeLibrosSL
         public int codi_provincia { set; get; }
         public int codi_municipi { set; get; }
         public string email { set; get; }
-        
+
+        public Editorial()
+        {
+
+        }
 
         public Editorial(int id, string cif, string nombre, string telefono,  string direccion, int codi_postal, int codi_provincia, int codi_municipi, string email)
         {
