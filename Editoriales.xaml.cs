@@ -64,7 +64,7 @@ namespace LibreriaDeLibrosSL
         }
         private void onModificar(object sender, RoutedEventArgs e)
         {
-            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.modificar);
+            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.modificar, (lveditoriales.SelectedItem as Editorial).id);
             window.ShowDialog();
             cargar();
         }

@@ -25,7 +25,7 @@ namespace LibreriaDeLibrosSL
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void onEditorialClick(object sender, RoutedEventArgs e)
         {
             Frame middleFrame = rightCol;
             Editoriales window = new Editoriales();
@@ -44,6 +44,11 @@ namespace LibreriaDeLibrosSL
             Frame middleFrame = rightCol;
             Libros window = new Libros();
             middleFrame.Source = new Uri("Libros.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void onPedidosClick(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void onClientesClick(object sender, RoutedEventArgs e)
