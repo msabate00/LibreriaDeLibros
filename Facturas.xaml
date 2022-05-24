@@ -1,29 +1,39 @@
-﻿<Window x:Class="LibreriaDeLibrosSL.Facturas"
+﻿<Page x:Class="LibreriaDeLibrosSL.Facturas"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibreriaDeLibrosSL"
         mc:Ignorable="d"
-         Title="Facturas" Height="352" Width="603">
-    <Grid>
-        <Label Content="Facturas" HorizontalAlignment="Left" Margin="14,14,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Button Content="Insertar" Margin="413,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" Click="onInsertar"/>
-        <Button Content="Modificar" Margin="467,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54"/>
-        <Button Content="Eliminar" Margin="531,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46"/>
-
-        <ListView Margin="10,80,10,10" x:Name="lvfacturas">
+        Title="Libros" Height="416" Width="997">
+    <Grid Background="White">
+        <RadioButton Name="IsInsert" Content="Insertar" GroupName="facturasAction" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="IsInsert_Checked"/>
+        <RadioButton Name="IsDelete" Content="Eliminar" GroupName="facturasAction" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="IsDelete_Checked"/>
+        <RadioButton Name="IsUpdate" Content="Modificar" GroupName="facturasAction" HorizontalAlignment="Left" Margin="190,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="IsUpdate_Checked"/>
+        <ComboBox ItemsSource="{Binding FacturasList}" Name="ComboBoxFacturas" HorizontalAlignment="Left" Margin="100,30,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <ComboBox ItemsSource="{Binding ClientesList}" Name="ComboBoxClientes" HorizontalAlignment="Left" Margin="100,67,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <ComboBox ItemsSource="{Binding EmpleadosList}" Name="ComboBoxEmpleados" HorizontalAlignment="Left" Margin="100,110,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <DatePicker Name="DatePickerPublDate" HorizontalAlignment="Left" Margin="100,154,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <TextBox Name="TextBoxPreuFinal" HorizontalAlignment="Left" Margin="100,202,0,0" VerticalAlignment="Top" Width="156" IsEnabled="False"/>
+        <Button Name="Apply" Content="Aplicar" HorizontalAlignment="Left" Margin="100,280,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False" Click="Commit_Click"/>
+        <Button x:Name="Save" Content="Enviar a BDD" HorizontalAlignment="Left" Margin="100,330,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False" Click="Save_Click"/>
+        <Button x:Name="Load" Content="Cargar BDD" HorizontalAlignment="Left" Margin="100,305,0,0" VerticalAlignment="Top" Width="95" IsEnabled="False" Click="Load_Click"/>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top"/>
+        <Label Content="IdCliente" HorizontalAlignment="Left" Margin="35,65,0,0" VerticalAlignment="Top"/>
+        <Label Content="IdEmpleado" HorizontalAlignment="Left" Margin="19,108,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha factura" HorizontalAlignment="Left" Margin="12,153,0,0" VerticalAlignment="Top"/>
+        <Label Content="Preu Final" HorizontalAlignment="Left" Margin="30,200,0,0" VerticalAlignment="Top"/>
+        <ListView ItemsSource="{Binding FacturasList}" x:Name="lvfacturas" Margin="264,10,28,31">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" Width="20" DisplayMemberBinding="{Binding id}" />
+                    <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding id}" />
                     <GridViewColumn Header="Id_Cliente" Width="65" DisplayMemberBinding="{Binding cliente}" />
                     <GridViewColumn Header="Id_Empleado" Width="150" DisplayMemberBinding="{Binding empleado}" />
-                    <GridViewColumn Header="Fecha Factura" Width="182" DisplayMemberBinding="{Binding fecha}" />
-                    <GridViewColumn Header="Preu Final" Width="160" DisplayMemberBinding="{Binding preciofinal}" />
+                    <GridViewColumn Header="Fecha Factura" Width="250" DisplayMemberBinding="{Binding fecha}" />
+                    <GridViewColumn Header="Preu Final" Width="200" DisplayMemberBinding="{Binding preciofinal}" />
                 </GridView>
             </ListView.View>
         </ListView>
-
-
     </Grid>
-</Window>
+</Page>
+    
