@@ -21,7 +21,7 @@ namespace LibreriaDeLibrosSL
     /// </summary>
     public partial class Pedidos : Page
     {
-        Connexio connexio = new Connexio();
+        PedidoDao pedidosDao = new PedidoDao();
         List<Pedido> lista_pedidos = new List<Pedido>();
         public Pedidos()
         {
@@ -32,63 +32,103 @@ namespace LibreriaDeLibrosSL
 
         public void loadData()
         {
-            string query = "select * from pedidos;";
-            MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
+            lista_pedidos.Clear();
+            try
             {
-                Pedido pedido = new Pedido();
-                pedido.Id = rdr["id"] != DBNull.Value ? Convert.ToInt32(rdr["id"]) : 0;
-                pedido.EditorialId = rdr["editorial_id"] != DBNull.Value ? Convert.ToInt32(rdr["editorial_id"]) : 0;
-                pedido.EditorialNom = $"{pedido.EditorialId} " + getEditorialNameById(pedido.EditorialId);
-                pedido.FechaPedido = rdr["fecha_pedido"] != DBNull.Value ? Convert.ToDateTime(rdr["fecha_pedido"]) : DateTime.Now;
-                pedido.FechaEntrega = rdr["fecha_entrega"] != DBNull.Value ? Convert.ToDateTime(rdr["fecha_entrega"]) : DateTime.Now;
-                pedido.Cantidad = rdr["cantidad"] != DBNull.Value ? Convert.ToInt32(rdr["cantidad"]) : 0;
-                pedido.PrecioFinal = rdr["precio_final"] != DBNull.Value ? Convert.ToDouble(rdr["precio_final"]) : 0;
-
-                lista_pedidos.Add(pedido);
+                lista_pedidos = pedidosDao.getAllPedidos();
+                setEditorialName();
             }
-            rdr.Close();
-            connexio.Close();
-            lvpedidos.ItemsSource = lista_pedidos;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
-        public string getEditorialNameById(int id)
+
+        public void setEditorialName()
         {
-            string name = "";
-            string query = $"select nombre from editoriales where id = {id};";
-            MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
-            object result = cmd.ExecuteScalar();
-            if (result != null)
+            foreach (var pedido in lista_pedidos)
             {
-                name = (string)result;
+                pedido.EditorialNom = pedidosDao.getEditorialNameById(pedido.EditorialId);
             }
-            connexio.Close();
-            return name;
+            lvpedidos.ItemsSource = lista_pedidos;
         }
 
         private void onNuevo(object sender, RoutedEventArgs e)
         {
-            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.insertar);
-            window.ShowDialog();
-            loadData();
+            openEditWindow(null);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void onEditar(object sender, RoutedEventArgs e)
         {
-            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.modificar);
-            window.ShowDialog();
-            loadData();
+            if (lvpedidos.SelectedItem != null)
+            {
+                Pedido select = lvpedidos.SelectedItem as Pedido;
+                openEditWindow(select);
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un pedido!", "Aviso", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
         }
 
+        /// <summary>
+        /// Eliminar un pedido por id
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void onEliminar(object sender, RoutedEventArgs e)
         {
-
-            MessageBoxResult result = MessageBox.Show("Seguro que quieres eliminar el pedido?",
-          "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
+            if (lvpedidos.SelectedItem != null)
             {
-                // Close the window  
+                Pedido select = lvpedidos.SelectedItem as Pedido;
+                MessageBoxResult result = MessageBox.Show($"Seguro que quieres eliminar el pedido {select.Id}?",
+                  "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        pedidosDao.eliminarLineaPedidoByIdPedido(select.Id);
+                        pedidosDao.eliminarPedidoById(select.Id);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                    loadData();
+                }
             }
+            else
+            {
+                MessageBox.Show("Selecciona un pedido!", "Aviso", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+        }
+
+        /// <summary>
+        /// Abrir ventana Linea Pedido
+        /// </summary>
+        public void openEditWindow(Pedido p)
+        {
+            LineaPedidoView lp = new LineaPedidoView();
+            if (p != null)
+            {
+                lp = new LineaPedidoView(p);
+                lp.EditTitol.Content = "Editar";
+            }
+            lp.ShowDialog();
+
+            /*
+            MainWindow window = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            if (window != null)
+                window.rightCol.Source = new Uri("LineaPedidoView.xaml", UriKind.RelativeOrAbsolute);
+            */
         }
 
         private void onActualizar(object sender, RoutedEventArgs e)

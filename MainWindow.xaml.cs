@@ -49,7 +49,9 @@ namespace LibreriaDeLibrosSL
 
         private void onPedidosClick(object sender, RoutedEventArgs e)
         {
-
+            Frame middleFrame = rightCol;
+            Pedidos window = new Pedidos();
+            middleFrame.Source = new Uri("Pedidos.xaml", UriKind.RelativeOrAbsolute);
         }
 
         private void onClientesClick(object sender, RoutedEventArgs e)

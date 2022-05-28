@@ -32,6 +32,12 @@ namespace LibreriaDeLibrosSL
             this.Idioma = Idioma;
             this.FKEditorial = FKEditorial;
         }
+
+        public Libro()
+        {
+
+        }
+
         public override string ToString()
         {
             return "[" + ID + "] " + ISBN;
