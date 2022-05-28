@@ -8,38 +8,41 @@
       Title="Pedidos"
       Background="LightGray">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <Grid Margin="0">
 
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Pedidos"
-                   FontSize="24"
-                   Margin="10, 10, 0, 0" />
-            <Button Content="Nuevo"
-                    Margin="150, 20, 30, 20"
-                    Width="60"
-                    Click="onNuevo" />
-            <Button Content="Editar"
-                    Margin="0, 20, 30, 20"
-                    Width="60"
-                    Click="onEditar" />
-            <Button Content="Eliminar"
-                    Margin="0, 20, 30, 20"
-                    Width="60"
-                    Click="onEliminar" />
-            <Button Content="Actualizar"
-                    Margin="0, 20, 30, 20"
-                    Width="60"
-                    Click="onActualizar" />
-        </StackPanel>
+        <Label Content="Pedidos"
+               HorizontalAlignment="Left"
+               Margin="14,14,0,0"
+               VerticalAlignment="Top"
+               FontSize="24" />
+        <Button Content="Nuevo"
+                Margin="290,29,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="60"
+                Click="onNuevo" />
+        <Button Content="Editar"
+                Margin="370,29,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="60"
+                Click="onEditar" />
+        <Button Content="Eliminar"
+                Margin="450,29,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="60"
+                Click="onEliminar" />
+        <Button Content="Actualizar"
+                Margin="531,29,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="60"
+                Click="onActualizar" />
 
-        <ListView x:Name="lvpedidos"
-                  Grid.Row="1"
-                  Margin="10, 0, 10, 0"
-                  Height="300">
+
+        <ListView Margin="10,80,10,10"
+                  x:Name="lvpedidos">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID"

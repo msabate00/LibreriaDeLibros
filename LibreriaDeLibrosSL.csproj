@@ -5,33 +5,38 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>book.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="clientes\**" />
     <Compile Remove="editoriales\**" />
-    <Compile Remove="empleados\**" />
     <Compile Remove="facturas\**" />
     <Compile Remove="libros\**" />
-    <EmbeddedResource Remove="clientes\**" />
     <EmbeddedResource Remove="editoriales\**" />
-    <EmbeddedResource Remove="empleados\**" />
     <EmbeddedResource Remove="facturas\**" />
     <EmbeddedResource Remove="libros\**" />
-    <None Remove="clientes\**" />
     <None Remove="editoriales\**" />
-    <None Remove="empleados\**" />
     <None Remove="facturas\**" />
     <None Remove="libros\**" />
-    <Page Remove="clientes\**" />
     <Page Remove="editoriales\**" />
-    <Page Remove="empleados\**" />
     <Page Remove="facturas\**" />
     <Page Remove="libros\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\libreria.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="book.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.29" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\libreria.png" />
   </ItemGroup>
 
 </Project>

@@ -23,6 +23,10 @@ namespace LibreriaDeLibrosSL
         public MainWindow()
         {
             InitializeComponent();
+            Frame middleFrame = rightCol;
+            WelcomePage window = new WelcomePage();
+            middleFrame.Source = new Uri("WelcomePage.xaml", UriKind.RelativeOrAbsolute);
+
         }
 
         private void onEditorialClick(object sender, RoutedEventArgs e)
@@ -59,6 +63,12 @@ namespace LibreriaDeLibrosSL
             Frame middleFrame = rightCol;
             Clientes window = new Clientes();
             middleFrame.Source = new Uri("Clientes.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void onFacturasClick(object sender, RoutedEventArgs e)
+        {
+
+
         }
 
         private void rightCol_Navigated(object sender, NavigationEventArgs e)
