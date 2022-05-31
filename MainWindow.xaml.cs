@@ -38,6 +38,26 @@ namespace LibreriaDeLibrosSL
 
         }
 
+        private void onPedidosClick(object sender, RoutedEventArgs e)
+        {
+            Frame middleFrame = rightCol;
+            Pedidos window = new Pedidos();
+            middleFrame.Source = new Uri("Pedidos.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void onClientesClick(object sender, RoutedEventArgs e)
+        {
+            Frame middleFrame = rightCol;
+            Clientes window = new Clientes();
+            middleFrame.Source = new Uri("Clientes.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void onFacturasClick(object sender, RoutedEventArgs e)
+        {
+            Frame middleFrame = rightCol;
+            Facturas window = new Facturas();
+            middleFrame.Source = new Uri("Facturas.xaml", UriKind.RelativeOrAbsolute);
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Empleados window = new Empleados();

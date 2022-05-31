@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Icon="book.ico"
         xmlns:local="clr-namespace:LibreriaDeLibrosSL"
         mc:Ignorable="d"
-        Title="Librería de Libros S.L." Height="450" Width="800">
+        Title="Libreria de Libros S.L." Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*">
@@ -17,7 +16,7 @@
 
       
 
-        <Frame  Grid.Column="1" x:Name="rightCol" Background="LightGray" Margin="0,0,0,0" Navigated="rightCol_Navigated" ></Frame>
+        <Frame  Grid.Column="1" x:Name="rightCol" Background="LightGray" Margin="0,0,0,0" ></Frame>
 
         <StackPanel Orientation="Vertical">
             <Button Content="Editoriales"
