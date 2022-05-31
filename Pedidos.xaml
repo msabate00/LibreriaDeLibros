@@ -1,0 +1,70 @@
+﻿<Page x:Class="LibreriaDeLibrosSL.Pedidos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:LibreriaDeLibrosSL"
+      mc:Ignorable="d"
+      Title="Pedidos"
+      Background="LightGray">
+
+    <Grid Margin="0">
+
+        <Label Content="Pedidos"
+               HorizontalAlignment="Left"
+               Margin="14,14,0,0"
+               VerticalAlignment="Top"
+               FontSize="24" />
+        <Button Content="Nuevo"
+                Margin="290,29,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="60"
+                Click="onNuevo" />
+        <Button Content="Editar"
+                Margin="370,29,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="60"
+                Click="onEditar" />
+        <Button Content="Eliminar"
+                Margin="450,29,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="60"
+                Click="onEliminar" />
+        <Button Content="Actualizar"
+                Margin="531,29,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="60"
+                Click="onActualizar" />
+
+
+        <ListView Margin="10,80,10,10"
+                  x:Name="lvpedidos">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID"
+                                    Width="50"
+                                    DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Editorial"
+                                    Width="108"
+                                    DisplayMemberBinding="{Binding EditorialNom}" />
+                    <GridViewColumn Header="Fecha Pedido"
+                                    Width="108"
+                                    DisplayMemberBinding="{Binding FechaPedido}" />
+                    <GridViewColumn Header="Fecha Entrega"
+                                    Width="108"
+                                    DisplayMemberBinding="{Binding FechaEntrega}" />
+                    <GridViewColumn Header="Cantidad"
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Cantidad}" />
+                    <GridViewColumn Header="Precio final"
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding PrecioFinal}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

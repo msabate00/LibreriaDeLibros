@@ -23,13 +23,18 @@ namespace LibreriaDeLibrosSL
         public MainWindow()
         {
             InitializeComponent();
+            Frame middleFrame = rightCol;
+            WelcomePage window = new WelcomePage();
+            middleFrame.Source = new Uri("WelcomePage.xaml", UriKind.RelativeOrAbsolute);
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void onEditorialClick(object sender, RoutedEventArgs e)
         {
             Frame middleFrame = rightCol;
             Editoriales window = new Editoriales();
             middleFrame.Source = new Uri("Editoriales.xaml", UriKind.RelativeOrAbsolute);
+            
 
         }
 
@@ -44,13 +49,6 @@ namespace LibreriaDeLibrosSL
             Frame middleFrame = rightCol;
             Libros window = new Libros();
             middleFrame.Source = new Uri("Libros.xaml", UriKind.RelativeOrAbsolute);
-        }
-
-        private void onFacturasClick(object sender, RoutedEventArgs e)
-        {
-            Frame middleFrame = rightCol;
-            Facturas window = new Facturas();
-            middleFrame.Source = new Uri("Facturas.xaml", UriKind.RelativeOrAbsolute);
         }
     }
 }

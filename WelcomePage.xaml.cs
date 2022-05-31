@@ -13,16 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibreriaDeLibrosSL.pedidos
+namespace LibreriaDeLibrosSL
 {
     /// <summary>
-    /// Lógica de interacción para Pedidos.xaml
+    /// Lógica de interacción para WelcomePage.xaml
     /// </summary>
-    public partial class Pedidos : Page
+    public partial class WelcomePage : Page
     {
-        public Pedidos()
+        public WelcomePage()
         {
             InitializeComponent();
+            var uri = new Uri("pack://application:,,,/Images/libreria.png");
+            imagen.Source = new BitmapImage(uri);
         }
     }
 }
