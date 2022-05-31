@@ -66,8 +66,9 @@ namespace LibreriaDeLibrosSL
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Frame middleFrame = rightCol;
             Empleados window = new Empleados();
-            window.Show();
+            middleFrame.Source = new Uri("Empleados.xaml", UriKind.RelativeOrAbsolute);
 
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
