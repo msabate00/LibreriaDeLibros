@@ -58,6 +58,12 @@ namespace LibreriaDeLibrosSL
             Facturas window = new Facturas();
             middleFrame.Source = new Uri("Facturas.xaml", UriKind.RelativeOrAbsolute);
         }
+        private void onLinFacturasClick(object sender, RoutedEventArgs e)
+        {
+            Frame middleFrame = rightCol;
+            LiniaFactura window = new LiniaFactura();
+            middleFrame.Source = new Uri("LiniaFactura.xaml", UriKind.RelativeOrAbsolute);
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Empleados window = new Empleados();

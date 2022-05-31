@@ -26,7 +26,7 @@ namespace LibreriaDeLibrosSL
 
         public override string ToString()
         {
-            return "[" + id + "] " + cliente +" - "+ empleado;
+            return "[" + id + "]  C: " + cliente +" -  E: "+ empleado;
         }
 
     }

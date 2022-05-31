@@ -23,15 +23,14 @@ namespace LibreriaDeLibrosSL
     {
         public ObservableCollection<LinFacturas> lista_LinFacturas { get; } = new();
         public ObservableCollection<Libro> listaLibros { get; } = new();
-
-        List<Factura> listaFacturas = new List<Factura>();
+        public ObservableCollection<Factura> listaFacturas { get; } = new();
 
         List<Editorial> EditorialList = new List<Editorial>();
 
         List<LinFacturas> lista_LinFacturasOriginal = new List<LinFacturas>();
 
         private MySqlConnection Conn = new Connexio().Conn;
-        public LiniaFactura()
+        public LiniaFactura()   
         {
             InitializeComponent();
             this.DataContext = this;
@@ -44,7 +43,7 @@ namespace LibreriaDeLibrosSL
             listaFacturas.Clear();
             listaLibros.Clear();
 
-            string query = "select * from liniea_factura;";
+            string query = "select * from linea_factura;";
             MySqlCommand cmd = new MySqlCommand(query, Conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
@@ -54,6 +53,19 @@ namespace LibreriaDeLibrosSL
                 lista_LinFacturasOriginal.Add(prov);
             }
             rdr.Close();
+
+             query = "select * from facturas;";
+             cmd = new MySqlCommand(query, Conn);
+             rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                Factura prov = new Factura(rdr.GetInt32(0), rdr.GetInt32(1), rdr.GetInt32(2), rdr.GetDateTime(3), rdr.GetFloat(4));
+                listaFacturas.Add(prov);
+            }
+            rdr.Close();
+
+
+
 
 
             query = "SELECT id, cif, nombre, telefono, direccion, codi_postal, codi_provincia, codi_municipi, email FROM editoriales;";
@@ -135,8 +147,8 @@ namespace LibreriaDeLibrosSL
             }
             else if (IsUpdate.IsChecked != null && (bool)IsUpdate.IsChecked)
             {
-                ComboBoxFacturas.IsEnabled = false;
-                ComboBoxLibros.IsEnabled = false;
+                ComboBoxFacturas.IsEnabled = true;
+                ComboBoxLibros.IsEnabled = true;
                 TextBoxPreuPerUnitat.IsEnabled = true;
                 TextQuantitat.IsEnabled = true;
             }
@@ -188,6 +200,14 @@ namespace LibreriaDeLibrosSL
                     }
                     try
                     {
+                        stock = int.Parse(TextQuantitat.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("El precio debe ser un número con decimales.");
+                    }
+                    try
+                    {
                         fc = (Factura)ComboBoxFacturas.SelectedItem;
                         if (fc == null)
                         {
@@ -222,44 +242,67 @@ namespace LibreriaDeLibrosSL
             {
                 if(ComboBoxLibros.SelectedItem != null && ComboBoxFacturas.SelectedItem != null)
                 {
-                   
-
+                    Factura fc = (Factura)ComboBoxFacturas.SelectedItem;
+                    Libro lb = (Libro)ComboBoxLibros.SelectedItem;
+                    int i = 0;
+                    bool del = false;
+                   foreach(LinFacturas lp in lista_LinFacturas)
+                    {
+                        if(lp.id.Equals(fc.id + "_" + lb.ID))
+                        {
+                            del = true;
+                            break;
+                        }
+                        i++;
+                    }
+                    if (del)
+                    {
+                        try
+                        {
+                            lista_LinFacturas.RemoveAt(i);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error al eliminar");
+                        }
+                    }
 
                 }
                 else
                 {
                     MessageBox.Show("No se ha seleccionado ningún registro", "Error al eliminar");
                 }
-
-                if (ComboBoxFacturas.SelectedItem == null)
-                {
-                    foreach(LinFacturas lf in lista_LinFacturas)
-                    {
-
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        lista_LinFacturas.Remove((LinFacturas)ComboBoxFacturas.SelectedItem);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error al eliminar");
-                    }
-                }
-
             }
             else if (IsUpdate.IsChecked != null && (bool)IsUpdate.IsChecked)
             {
                 try
                 {
-                    Factura factura;
+
+                    float precio = 0.0f;
+                    int stock = 0;
+                    Factura fc = new Factura(0, 0, 0, new DateTime(), 0f);
+                    Editorial ed = new Editorial(0, "", "", "", "", 0, 0, 0, "");
+                    Libro lb = new Libro(0, "", "", "", new DateTime(), "", 0.00, 0, "", ed);
                     try
                     {
-                        factura = (Factura)ComboBoxFacturas.SelectedItem;
-                        if (factura == null)
+                        precio = float.Parse(TextBoxPreuPerUnitat.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("El precio debe ser un número con decimales.");
+                    }
+                    try
+                    {
+                        stock = int.Parse(TextQuantitat.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("El precio debe ser un número con decimales.");
+                    }
+                    try
+                    {
+                        fc = (Factura)ComboBoxFacturas.SelectedItem;
+                        if (fc == null)
                         {
                             throw new Exception();
                         }
@@ -268,20 +311,30 @@ namespace LibreriaDeLibrosSL
                     {
                         throw new Exception("Debe seleccionarse una factura.");
                     }
-
-                    DateTime fecha = DateTime.MinValue;
                     try
                     {
+                        lb = (Libro)ComboBoxLibros.SelectedItem;
+                        if (lb == null)
+                        {
+                            throw new Exception();
+                        }
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception("La fecha no tiene un formato válido.");
+                        throw new Exception("Debe seleccionarse un libro.");
                     }
 
-                    factura.fecha = fecha;
 
-
-                    ComboBoxFacturas.SelectedItem = factura;
+                    foreach (LinFacturas lp in lista_LinFacturas)
+                    {
+                        if (lp.id.Equals(fc.id + "_" + lb.ID))
+                        {
+                            lp.cantidad = stock;
+                            lp.precioUnidad = precio;
+                            break;
+                        }
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -297,29 +350,77 @@ namespace LibreriaDeLibrosSL
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            MySqlTransaction transaction = null;
+            try
+            {
+                transaction = Conn.BeginTransaction();
+                foreach (LinFacturas liniaOrignial in lista_LinFacturasOriginal)
+                {
+                    bool found = false;
+                    foreach (LinFacturas liniaNueva in lista_LinFacturas)
+                    {
+                        if (liniaOrignial.id.Equals(liniaNueva.id))
+                        {
+                            //antes existía, ahora también, lo actualizamos
+                            String query = "UPDATE linea_factura SET "
+                                + "factura_id = '" + liniaNueva.id_Factura + "', "
+                                + "libro_id = '" + liniaNueva.id_Libro + "', "
+                                + "cantidad = '" + liniaNueva.cantidad + "', "
+                                + "precio_unit = '" + liniaNueva.precioUnidad + "' "
+                                + " WHERE factura_id = '" + liniaOrignial.id_Factura + "' and libro_id = '"+ liniaOrignial.id_Libro+ "';";
+                            MySqlCommand cmd = new MySqlCommand(query, Conn);
+                            cmd.ExecuteNonQuery();
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        //antes existía, ahora no, lo borramos
+                        String query = "DELETE FROM linea_factura  WHERE factura_id = '" + liniaOrignial.id_Factura + "' and libro_id = '"+ liniaOrignial.id_Libro+ "'; ";
+                        MySqlCommand cmd = new MySqlCommand(query, Conn);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                foreach (LinFacturas liniaNueva in lista_LinFacturas)
+                {
+                    bool found = false;
+                    foreach (LinFacturas liniaOrignial in lista_LinFacturasOriginal)
+                    {
+                        if (liniaOrignial.id.Equals(liniaNueva.id))
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        String query = "INSERT INTO linea_factura VALUES("
+                            + "'" + liniaNueva.id_Factura + "', "
+                            + "'" + liniaNueva.id_Libro + "', "
+                            + "'" + liniaNueva.cantidad + "', "
+                            + "'" + SanitazeFloat(liniaNueva.precioUnidad) 
+                            + "');";
+                        MySqlCommand cmd = new MySqlCommand(query, Conn);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                transaction.Commit();
+                cargar();
+            }
+            catch (Exception ex)
+            {
+                if (transaction != null)
+                {
+                    transaction.Rollback();
+                }
+                MessageBox.Show(ex.Message, "Error al guardar en BDD");
+            }
         }
 
         private static string SanitazeFloat(float f)
         {
             return f.ToString().Replace(",", ".");
-        }
-        private static string DateToString(DateTime date)
-        {
-            return date.Year + "-" + date.Month + "-" + date.Day;
-        }
-
-        public void cargar2()
-        {
-            string query = "select* from facturas;";
-            MySqlCommand cmd = new MySqlCommand(query, Conn);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
-            {
-                LinFacturas prov = new LinFacturas(rdr.GetInt32(0), rdr.GetInt32(1), rdr.GetInt32(2), rdr.GetFloat(3));
-                lista_LinFacturas.Add(prov);
-            }
-            rdr.Close();
-            lvLiniaFacturas.ItemsSource = lista_LinFacturas;
         }
     }
 }
