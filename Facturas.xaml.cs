@@ -74,7 +74,7 @@ namespace LibreriaDeLibrosSL
             while (rdr.Read())
             {
                 DateTime d = new DateTime(rdr.GetDateTime(3).Date.Year, rdr.GetDateTime(3).Date.Month, rdr.GetDateTime(3).Date.Day);
-                Empleado prov = new Empleado(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), d, rdr.GetInt32(4), rdr.GetString(5), rdr.GetString(6), rdr.GetInt32(7), rdr.GetInt32(8));
+                Empleado prov = new Empleado(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), d.ToString(), rdr.GetInt32(4), rdr.GetString(5), rdr.GetString(6), rdr.GetInt32(7), rdr.GetInt32(8));
                 EmpleadosList.Add(prov);
             }
             rdr.Close();
@@ -178,7 +178,7 @@ namespace LibreriaDeLibrosSL
                     float precio = 0.0f;
                     int stock = 0;
                     Cliente cl = new Cliente(0, "", "", "", fecha, 0, "","",0,0);
-                    Empleado em = new Empleado(0,"", "", fecha, 0,"","",0,0);
+                    Empleado em = new Empleado(0,"", "", fecha.ToString(), 0,"","",0,0);
                     try
                     {
                         fecha = (DateTime)DatePickerPublDate.SelectedDate;

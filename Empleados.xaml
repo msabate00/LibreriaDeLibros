@@ -1,14 +1,37 @@
-﻿<Window x:Class="LibreriaDeLibrosSL.Empleados"
+﻿<Page x:Class="LibreriaDeLibrosSL.Empleados"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibreriaDeLibrosSL"
         mc:Ignorable="d"
-        Title="Empleados" Height="581" Width="1150">
+        Title="Empleados">
     <Grid>
+        <Label Content="Fecha Nacimiento" HorizontalAlignment="Left" Margin="3,237,0,0" VerticalAlignment="Top"/>
+        <Label Content="Telefono" HorizontalAlignment="Left" Margin="25,264,0,0" VerticalAlignment="Top"/>
+        <Label Content="email" HorizontalAlignment="Left" Margin="35,330,0,0" VerticalAlignment="Top"/>
+        <Label Content="Codigo provincia" HorizontalAlignment="Left" Margin="13,380,0,0" VerticalAlignment="Top"/>
+        <Label Content="Codigo Munici" HorizontalAlignment="Left" Margin="20,411,0,0" VerticalAlignment="Top"/>
+        <Label Content="direccion" HorizontalAlignment="Left" Margin="25,304,0,0" VerticalAlignment="Top"/>
+        <Label Content="id" HorizontalAlignment="Left" Margin="35,139,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="20,180,0,0" VerticalAlignment="Top"/>
+        <Label Content="Apellido" HorizontalAlignment="Left" Margin="26,211,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="tb_id" HorizontalAlignment="Left" Margin="114,139,0,0" VerticalAlignment="Top"  Width="123" Height="36">
+            <TextBox x:Name="lb_id" TextWrapping="Wrap"  Width="123" Height="24"   IsReadOnly="True"
+/>
+        </Label>
+        <TextBox x:Name="tb_nom" HorizontalAlignment="Left" Margin="117,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tb_apellido" HorizontalAlignment="Left" Margin="114,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tb_nacimiento" HorizontalAlignment="Left" Margin="117,241,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tb_telefono" HorizontalAlignment="Left" Margin="117,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tb_direccion" HorizontalAlignment="Left" Margin="117,307,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <ListView Margin="10,106,0,10" x:Name="lvEmpleados">
+        <TextBox x:Name="tb_email" HorizontalAlignment="Left" Margin="117,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Aceptar" HorizontalAlignment="Left" Margin="104,483,0,0" Click="Button_Click"/>
+        <ComboBox x:Name="cb_provincia" HorizontalAlignment="Left" Margin="121,377,0,0" VerticalAlignment="Top" Width="116" Height="25" SelectionChanged="onSelectProvincia"/>
+        <ComboBox x:Name="cb_municipi" HorizontalAlignment="Left" Margin="120,413,0,0" VerticalAlignment="Top" Width="117" Height="20"/>
+
+        <ListView Margin="242,106,0,10" x:Name="lvEmpleados" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" Width="60" DisplayMemberBinding="{Binding id}" />
@@ -18,15 +41,14 @@
                     <GridViewColumn Header="Telefono" Width="80" DisplayMemberBinding="{Binding telefono}" />
                     <GridViewColumn Header="email" Width="150" DisplayMemberBinding="{Binding email}" />
                     <GridViewColumn Header="Direcccion" Width="150" DisplayMemberBinding="{Binding direccion}" />
-                    <GridViewColumn Header="Codigo Postal" Width="80" DisplayMemberBinding="{Binding codi_poblacio}" />
+                    <GridViewColumn Header="Codigo municipi" Width="80" DisplayMemberBinding="{Binding codi_municipi}" />
                     <GridViewColumn Header="Codigo Provincia" Width="110" DisplayMemberBinding="{Binding codi_provincia}" />
                 </GridView>
             </ListView.View>
         </ListView>
         <Label Content="Empleados" HorizontalAlignment="Left" Margin="44,24,0,0" VerticalAlignment="Top" Height="50" Width="224" FontSize="28" FontWeight="Bold"/>
-        <Button x:Name="btnAddCli" Content="Añadir Cliente" HorizontalAlignment="Left" Margin="459,38,0,0" VerticalAlignment="Top" FontSize="16" Width="232" Click="btnAddCli_Click"/>
-        <Button x:Name="btnModCli" Content="Modificar Cliente" HorizontalAlignment="Left" Margin="708,38,0,0" VerticalAlignment="Top" FontSize="16" Width="210" Click="btnModCli_Click"/>
-        <Button x:Name="btnDelCli" Content="Eliminar Cliente" HorizontalAlignment="Left" Margin="938,38,0,0" VerticalAlignment="Top" FontSize="16" Width="191"/>
-    </Grid>
-</Window>
 
+        <Button Content="Borrar" HorizontalAlignment="Left" Margin="946,55,0,0" VerticalAlignment="Top" Height="28" Width="113" Click="btnDelCli_Click"/>
+        <Button Content="Modificar" HorizontalAlignment="Left" Margin="814,55,0,0" VerticalAlignment="Top" Height="28" Width="113" Click="Button_Click_1"/>
+    </Grid>
+</Page>

@@ -11,14 +11,14 @@ namespace LibreriaDeLibrosSL
         public int id { set; get; }
         public string nom { set; get; }
         public string apellidos { set; get; }
-        public DateTime fecha { set; get; }
+        public String fecha { set; get; }
         public int telefono { set; get; }
         public string email { set; get; }
         public string direccion { set; get; }
-        public int codi_poblacio { set; get; }
+        public int codi_municipi { set; get; }
         public int codi_provincia { set; get; }
 
-        public Empleado(int id, string nom, string apellidos, DateTime fecha, int telefono, string email, string direccion, int codi_poblacio, int codi_provincia)
+        public Empleado(int id, string nom, string apellidos, String fecha, int telefono, string email, string direccion, int codi_municipi, int codi_provincia)
         {
             this.id = id;
             this.nom = nom;
@@ -27,7 +27,7 @@ namespace LibreriaDeLibrosSL
             this.telefono = telefono;
             this.email = email;
             this.direccion = direccion;
-            this.codi_poblacio = codi_poblacio;
+            this.codi_municipi = codi_municipi;
             this.codi_provincia = codi_provincia;
         }
         public override string ToString()
