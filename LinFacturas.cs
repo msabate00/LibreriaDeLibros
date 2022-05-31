@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibreriaDeLibrosSL
 {
-    internal class LinFacturas
+    public class LinFacturas
     {
         public LinFacturas(int id_Factura, int id_Libro, int cantidad, float precioUnidad)
         {

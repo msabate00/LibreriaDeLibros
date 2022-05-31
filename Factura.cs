@@ -22,8 +22,12 @@ namespace LibreriaDeLibrosSL
         public int empleado { set; get; }
         public DateTime fecha { set; get; }
         public float preciofinal { set; get; }
+        public List<LiniaFactura> linias { set; get; }
 
+        public override string ToString()
+        {
+            return "[" + id + "] " + cliente +" - "+ empleado;
+        }
 
-        
     }
 }

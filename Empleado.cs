@@ -30,6 +30,9 @@ namespace LibreriaDeLibrosSL
             this.codi_poblacio = codi_poblacio;
             this.codi_provincia = codi_provincia;
         }
-
+        public override string ToString()
+        {
+            return "[" + id + "] " + nom + " " + apellidos;
+        }
     }
 }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibreriaDeLibrosSL"
         mc:Ignorable="d"
-        Title="Libros" Height="416" Width="997">
-    <Grid Background="White">
+        Title="Libros">
+    <Grid>
         <RadioButton Name="IsInsert" Content="Insertar" GroupName="facturasAction" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="IsInsert_Checked"/>
         <RadioButton Name="IsDelete" Content="Eliminar" GroupName="facturasAction" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="IsDelete_Checked"/>
         <RadioButton Name="IsUpdate" Content="Modificar" GroupName="facturasAction" HorizontalAlignment="Left" Margin="190,10,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="IsUpdate_Checked"/>
