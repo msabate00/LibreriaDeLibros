@@ -72,10 +72,16 @@ namespace LibreriaDeLibrosSL
 
         private void onEliminar(object sender, RoutedEventArgs e)
         {
+            if (lveditoriales.SelectedItem != null)
+            {
+                EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.eliminar, (lveditoriales.SelectedItem as Editorial).id);
+                window.ShowDialog();
+                cargar();
+            }
+            else {
+                MessageBox.Show("Debes de seleccionar una editorial para eliminarla");
+            }
             
-            EditorialesPopup window = new EditorialesPopup(EditorialesPopup.forma.eliminar, (lveditoriales.SelectedItem as Editorial).id);
-            window.ShowDialog();
-            cargar();
         }
     }
 }
