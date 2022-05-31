@@ -372,22 +372,5 @@ namespace LibreriaDeLibrosSL
         {
             return date.Year + "-" + date.Month + "-" + date.Day;
         }
-
-        private void IsInsert_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void IsDelete_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void IsUpdate_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Commit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -272,7 +272,6 @@ namespace LibreriaDeLibrosSL
                     DateTime fecha = DateTime.MinValue;
                     try
                     {
-                        fecha = (DateTime)DatePickerPublDate.SelectedDate;
                     }
                     catch (Exception ex)
                     {
@@ -281,8 +280,7 @@ namespace LibreriaDeLibrosSL
 
                     factura.fecha = fecha;
 
-                    FacturasList.Insert(ComboBoxFacturas.SelectedIndex, factura);
-                    FacturasList.RemoveAt(ComboBoxFacturas.SelectedIndex);
+
                     ComboBoxFacturas.SelectedItem = factura;
                 }
                 catch (Exception ex)
@@ -299,74 +297,6 @@ namespace LibreriaDeLibrosSL
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            MySqlTransaction transaction = null;
-            try
-            {
-                transaction = Conn.BeginTransaction();
-                foreach (Factura facturaOriginal in FacturasListOriginal)
-                {
-                    bool found = false;
-                    foreach (Factura facturaNueva in FacturasList)
-                    {
-                        if (facturaOriginal.id == facturaNueva.id)
-                        {
-                            //antes existía, ahora también, lo actualizamos
-                            String query = "UPDATE facturas SET "
-                                + "id = '" + facturaNueva.id + "', "
-                                + "cliente_id = '" + facturaNueva.cliente + "', "
-                                + "empleados_id = '" + facturaNueva.empleado + "', "
-                                + "fecha = '" + DateToString(facturaNueva.fecha) + "', "
-                                + "precio_final = '" + SanitazeFloat(facturaNueva.preciofinal) + "'"
-                                + " WHERE id = '" + facturaOriginal.id + "';";
-                            MySqlCommand cmd = new MySqlCommand(query, Conn);
-                            cmd.ExecuteNonQuery();
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (!found)
-                    {
-                        //antes existía, ahora no, lo borramos
-                        String query = "DELETE FROM facturas WHERE id = '" + facturaOriginal.id + "';";
-                        MySqlCommand cmd = new MySqlCommand(query, Conn);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                foreach (Factura facturaNueva in FacturasList)
-                {
-                    bool found = false;
-                    foreach (Factura facturaOriginal in FacturasListOriginal)
-                    {
-                        if (facturaOriginal.id == facturaNueva.id)
-                        {
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (!found)
-                    {
-                        String query = "INSERT INTO facturas VALUES("
-                            + "'" + facturaNueva.id + "', "
-                            + "'" + facturaNueva.cliente + "', "
-                            + "'" + facturaNueva.empleado + "', "
-                            + "'" + DateToString(facturaNueva.fecha) + "', "
-                            + "'" + SanitazeFloat(facturaNueva.preciofinal)
-                            + "');";
-                        MySqlCommand cmd = new MySqlCommand(query, Conn);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                transaction.Commit();
-                cargar();
-            }
-            catch (Exception ex)
-            {
-                if (transaction != null)
-                {
-                    transaction.Rollback();
-                }
-                MessageBox.Show(ex.Message, "Error al guardar en BDD");
-            }
         }
 
         private static string SanitazeFloat(float f)
@@ -381,9 +311,8 @@ namespace LibreriaDeLibrosSL
         public void cargar2()
         {
             string query = "select* from facturas;";
-            MySqlCommand cmd = new MySqlCommand(query, connexio.Conn);
+            MySqlCommand cmd = new MySqlCommand(query, Conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            lista_LinFacturas = new List<LinFacturas>();
             while (rdr.Read())
             {
                 LinFacturas prov = new LinFacturas(rdr.GetInt32(0), rdr.GetInt32(1), rdr.GetInt32(2), rdr.GetFloat(3));
