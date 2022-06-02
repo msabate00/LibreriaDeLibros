@@ -12,9 +12,9 @@
         <Label Content="User:" HorizontalAlignment="Left" Margin="59,133,0,0" VerticalAlignment="Top"/>
         <Label Content="Password:" HorizontalAlignment="Left" Margin="33,164,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tb_login_db" HorizontalAlignment="Left" Margin="100,105,0,0" TextWrapping="Wrap" Text="libreria" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tb_login_password" HorizontalAlignment="Left" Margin="100,167,0,0" TextWrapping="Wrap" Text="123456" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tb_login_user" HorizontalAlignment="Left" Margin="100,137,0,0" TextWrapping="Wrap" Text="root" VerticalAlignment="Top" Width="120"/>
         <Button Content="Aceptar" HorizontalAlignment="Center" Margin="0,229,0,0" VerticalAlignment="Top" Click="onAceptarLogin"/>
+        <PasswordBox x:Name="pb_login_password" HorizontalAlignment="Left" Margin="100,168,0,0" VerticalAlignment="Top" Width="120" Password="123456"/>
 
     </Grid>
 </Window>

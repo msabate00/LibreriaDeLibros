@@ -29,7 +29,7 @@ namespace LibreriaDeLibrosSL
             Connexio connexio = new Connexio();
             connexio.setDatabase(tb_login_db.Text);
             connexio.setUser(tb_login_user.Text);
-            connexio.setPassword(tb_login_password.Text);
+            connexio.setPassword(pb_login_password.Password);
 
             if (connexio.Conn == null)
             {
